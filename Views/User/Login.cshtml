@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+@if (ViewBag.Incorrect != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Incorrect");
+            };
+    </script>
+}
+
+
+
+<div class="main-login">
+    <img class="login-backImage" src="~/images/PS5-login.png" alt="">
+    <div class="login">
+        <form action="Login" class="login-form" method="post" enctype="multipart/form-data">
+            <h2 class="login-form-title">
+                <p>ورود</p>
+                /<a href="https://localhost:44398/User/Create">ثبت نام</a>
+            </h2>
+
+            <ul class="login-form-ul">
+                <li class="login-form-items-item">
+                    <label for="Username">نام کاربری : </label>
+                    <input type="text" name="Username" id="Username" placeholder="شماره موبایل خود را وارد کنید">
+                </li>
+                <li class="login-form-items-item">
+                    <label for="Password"> رمز عبور : </label>
+                    <input type="password" name="Password" id="Password" placeholder="رمز عبور خود را وارد کنید">
+                </li>
+                <li class="login-form-buttons">
+                    <div class="login-form-buttons-reset">
+                        <input type="button" value="فراموشی رمز عبور">
+                    </div>
+                    <div class="login-form-buttons-submit">
+                        <input type="submit" value="ورود">
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<BaziMarket1.Models.T_Product>
+<div class="newProducts">
+    <a class="newProducts-title">جدید ترین محصولات</a>
+    @foreach (var item in Model)
+    {
+        <div class="product">
+            <a href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId" class="product-Image">
+                <img src="~/images/products/@item.ProductImage">
+            </a>
+            <div class="product-Title">
+                <a href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId">@item.ProductName</a>
+            </div>
+            <div class="product-Price">
+                @if (item.ProductDiscount == null)
+                {
+                    <p class="product-Price-New"><b>@item.ProductPrice.DevideMoneyNumber()</b>&ensp;تومان</p>
+                }
+                else
+                {
+                    int newPrice = (int)(item.ProductPrice - (item.ProductPrice * item.ProductDiscount.Value / 100));
+                    <p class="product-Price-Old"><ins>@item.ProductPrice.DevideMoneyNumber()</ins> تومان</p>
+                    <p class="product-Price-New"><b>@newPrice.DevideMoneyNumber()</b> تومان</p>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+

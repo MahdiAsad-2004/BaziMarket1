@@ -1,0 +1,97 @@
+﻿@model BaziMarket1.Models.T_User
+
+@{ 
+    string RepeatPassword = null;
+}
+
+<div class="main-register">
+    <img class="register-backImage" src="~/images/3745105.jpg" alt="">
+    <div class="register">
+        <form class="register-form" action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2 class="register-form-title">
+                <a href="https://localhost:44398/user/Login">ورود</a>
+                /<p>ثبت نام</p>
+            </h2>
+            <ul class="register-form-ul">
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        <span class="lable-required"> * </span> @Html.LabelFor(model => model.Username) <span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "register-form-ul-li-input" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        <span class="lable-required"> * </span>@Html.LabelFor(model => model.UserPassword)<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "register-form-ul-li-input" } })
+                        @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        <span class="lable-required"> * </span>تکرار رمز عبور<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        <input class="register-form-ul-li-input" type="password" name="RepeatPassword" />
+                        @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        <span class="lable-required"> * </span>@Html.LabelFor(model => model.UserFirstName)<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        <input type="text" name="UserFirstName" id="UserFirstName" class="register-form-ul-li-input" maxlength="25"/>
+                        @Html.ValidationMessageFor(model => model.UserFirstName, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        <span class="lable-required"> * </span>@Html.LabelFor(model => model.UserLastName)<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        <input type="text" name="UserLastName" id="UserLastName" class="register-form-ul-li-input" maxlength="25" />
+                        @Html.ValidationMessageFor(model => model.UserLastName, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="register-form-ul-li">
+                    <div class="register-form-ul-li-lable">
+                        @Html.LabelFor(model => model.ProfileImage)<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <div class="register-form-ul-li-div">
+                        <input class="register-form-ul-li-input" type="file" id="ProfileImage" name="ProfileImage" accept=".png,.jpeg,.jpg" />
+                        @Html.ValidationMessageFor(model => model.ProfileImage, "", new { @class = "text-danger validation-error" })
+                    </div>
+                </li>
+                <li class="textArea">
+                    <div class="register-form-ul-li-lable">
+                        @Html.LabelFor(model => model.UserAddress)<span style="padding-right:5px;"> : </span>
+                    </div>
+                    <textarea class="textArea-div">
+
+                    </textarea>
+                </li>
+            </ul>
+            <div class="register-form-buttons">
+                <div class="register-form-buttons-reset">
+                    <input type="reset" value="دوباره نویسی">
+                </div>
+                <div class="register-form-buttons-submit">
+                    <input type="submit" value="ثبت نام">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/Scripts/jquery-3.6.4.min.js"></script>

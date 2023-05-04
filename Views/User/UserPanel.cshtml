@@ -1,0 +1,164 @@
+﻿@model BaziMarket1.Models.T_User
+
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}
+
+
+
+
+
+
+
+
+<main class="UserPanel" style="width: 95%;">
+    <ul class="sideBar">
+        <li>
+            <a href="" style="background-color: #e8293f; color: white;">
+                <span class="material-symbols-outlined">account_box</span>  مشخصات
+            </a>
+        </li>
+        <li>
+            <a href="https://localhost:44398/User/ChangePassword?UserId=@ViewBag.UserId">
+                <span class="material-symbols-outlined">vpn_key_alert</span>  رمز عبور
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="material-symbols-outlined">order_approve</span>  سفارش ها
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="material-symbols-outlined">notifications</span>  اطلاعیه ها و اخبار
+            </a>
+        </li>
+        <li>
+            <a href="https://localhost:44398/User/Wishlist?UserId=@ViewBag.UserId">
+                <span class="material-symbols-outlined">bookmark</span>  لیست ها
+            </a>
+        </li>
+    </ul>
+
+
+
+    
+
+
+    <div style="width: 60%; ">
+        <!-- Account details card-->
+        <div class="card">
+            <div class="card-header">مشخصات</div>
+            <div class="card-body">
+                <form action="UserPanel" enctype="multipart/form-data" method="post">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input hidden value="@Model.UserId" id="UserId" name="UserId" />
+                    <input hidden value="@Model.UserPassword" id="UserPassword" name="UserPassword" />
+                    <input hidden value="@Model.UserRoleId" id="UserRoleId" name="UserRoleId" />
+                    <input hidden value="@Model.ProfileImage" id="ProfileImage" name="ProfileImage" />*
+                    <!-- Form Group (username)-->
+                    <div class="mb-2">
+                        <label class="small mb-1 card-lable" for="Username">نام کابری</label>
+                        <input class="form-control" id="Username" name="Username" readonly value="@Model.Username">
+                    </div>
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-2">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1 card-lable" for="UserFirstName">نام</label>
+                            <input class="form-control" id="UserFirstName" name="UserFirstName" maxlength="20" value="@Model.UserFirstName">
+                            @Html.ValidationMessageFor(model => model.UserFirstName, "", new { @class = "text-danger validation-error" })
+                        </div>
+                        <!-- Form Group (last name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1 card-lable" for="UserLastName">نام خانوادگی</label>
+                            <input class="form-control" id="UserLastName" name="UserLastName" value="@Model.UserLastName" maxlength="20">
+                            @Html.ValidationMessageFor(model => model.UserLastName, "", new { @class = "text-danger validation-error" })
+                        </div>
+                    </div>
+                    <!-- Form Group (email address)-->
+                    <div class="mb-2">
+                        <label class="small mb-1 card-lable" for="UserAddress">آدرس</label>
+                        <textarea class="form-control" name="UserAddress" id="UserAddress" rows="5" maxlength="300">@Model.UserAddress</textarea>
+                    </div>
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (phone number)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1 card-lable" for="UserRegisterDate">تاریخ ثبت نام</label>
+                            <input class="form-control" id="UserRegisterDate" name="UserRegisterDate" readonly value="@Model.UserRegisterDate">
+                        </div>
+                        <!-- Form Group (birthday)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1 card-lable" for="UserIsActive">وضعیت</label>
+                            <select class="form-control" id="UserIsActive" name="UserIsActive">
+                                @if (Model.UserIsActive == true)
+                                {
+                                    <option style="color:limegreen;" value="true" selected>فعال</option>
+
+                                }
+                                else
+                                {
+                                    <option style="color:red" value="false" selected>غیر فعال</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Save changes button-->
+                    <button class="btn btn-primary" type="submit">ثبت تغییرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="" style="width: 20%;">
+        <!-- Profile picture card-->
+        <div class="card">
+            <div class="card-header">تصویر پروفایل</div>
+            <div class="card-body text-center">
+                <!-- Profile picture image-->
+                <img class="img-account-profile rounded-circle mb-2" src="~/images/users/@Model.ProfileImage" alt="">
+                <!-- Profile picture help block-->
+                <div class="small font-italic text-muted mb-4">JPG یا PNG حداکثر 500 کیلوبایت</div>
+                <!-- Profile picture upload button-->
+                <form action="ChangeProfileImage" method="post" enctype="multipart/form-data">
+                    <label class="small mb-1 card-lable" for="ProfileImage">تغییر تصویر پروفایل</label>
+                    <input name="UserId" type="hidden" value="@Model.UserId" />
+                    <input required class="form-control" type="file" name="ProfileImage" id="ProfileImage" accept=".png,.jpeg,.jpg">
+                    <button class="btn btn-primary" type="submit" style="border:none; width:95%; margin-top:10px; ">ثبت تصویر</button>
+                    @if (ViewBag.WrongFormat != null)
+                    {
+                        <span class="field-validation-valid text-danger validation-error" data-valmsg-for="ProfileImage" data-valmsg-replace="true"> فرمت تصویر اشتباه است !</span>
+                    }
+                    @if (ViewBag.WrongSize != null)
+                    {
+                        <span class="field-validation-valid text-danger validation-error" data-valmsg-for="ProfileImage" data-valmsg-replace="true">سایز تصویر بیشتر از 500 کیلوبایت است !</span>
+                    }
+                </form>                
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+<script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+<script src="~/Scripts/jquery-3.6.4.min.js"></script>
+<script src="~/Scripts/jquery-3.6.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

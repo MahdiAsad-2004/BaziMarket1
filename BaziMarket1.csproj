@@ -1,0 +1,697 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B9FA5322-7DC6-442C-BD40-2A4D607DD7C2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BaziMarket1</RootNamespace>
+    <AssemblyName>BaziMarket1</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44398</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\icomoon.svg" />
+    <Content Include="font\02.jpg" />
+    <Content Include="font\03.jpg" />
+    <Content Include="font\04.jpg" />
+    <Content Include="font\05.jpg" />
+    <Content Include="font\Cover.png" />
+    <Content Include="font\Fonts-B_YasDL.com\Read Me.txt" />
+    <Content Include="font\k01.jpg" />
+    <Content Include="font\pre-font-farsi-digi-kodak-plus-ufont.ir.jpg" />
+    <Content Include="font\typre-font-farsi-digi-kodak-plus-ufont.ir.png" />
+    <Content Include="Global.asax" />
+    <Content Include="images\0a272ddab87f4a6e10b4a20f5f22ac87e86e0318_1680021584.jpg" />
+    <Content Include="images\16737346706.jpg" />
+    <Content Include="images\16737346717.jpg" />
+    <Content Include="images\16ec1d7526e4090873c440cabecfc1b30b26dd32_1613891127.jpg" />
+    <Content Include="images\1e6f6250a9bfb10767563fbdba36014917465574_1610801374.jpg" />
+    <Content Include="images\1ec8cb179c18c22aad70bcc80d3973e92269511d_1680021588.jpg" />
+    <Content Include="images\2a8c2fcdd68adc365edbc99b8b905d06c3cb217a_1634331270.jpg" />
+    <Content Include="images\3745105.jpg" />
+    <Content Include="images\42135ced3dec4f459affc3e04fe8b36c.jpg" />
+    <Content Include="images\5ff0caa485304832841dea2115cb11da.jpg" />
+    <Content Include="images\6a35a4c2662a8e893e64ea0f0bab6f41c370ac5d_1634331272.jpg" />
+    <Content Include="images\6cee150d68cc47209d95b67548fc3eb5.jpg" />
+    <Content Include="images\6e92f65d0f64c43eb31605276e6ea0712cd651d8_1634331269.jpg" />
+    <Content Include="images\71D+IuwNliL._AC_SX679_.jpg" />
+    <Content Include="images\71kuBEPzHmL._AC_SX679_.jpg" />
+    <Content Include="images\7461bcf47dff4f03b48cb4dada518cc1.jpg" />
+    <Content Include="images\77ee47b883fac6595769213f6caab14961362374_1610801363.jpg" />
+    <Content Include="images\7f5f3f922b871b363ebaaf766e1429c9cf693421_1634331268.jpg" />
+    <Content Include="images\878b4084d2247a504341d2e57f919cada4eddbb3_1613891124.jpg" />
+    <Content Include="images\8ca6050b924d17aff2bb596eed03e7d7684c24c1_1680026844.jpg" />
+    <Content Include="images\91KueEqcK1L._AC_SY879_.jpg" />
+    <Content Include="images\9a685d18fab47fb4aeb8aff2df2604b1cbfb9f17_1676997652.jpg" />
+    <Content Include="images\ad04e95d06859b9a28a0c75d88cc285f3b8c5efd_1613891126.jpg" />
+    <Content Include="images\category\collageactionFigure.png" />
+    <Content Include="images\category\collageBoardgame.png" />
+    <Content Include="images\category\collageBoardgame1.png" />
+    <Content Include="images\category\collageconsoleAccessories.png" />
+    <Content Include="images\category\download.png" />
+    <Content Include="images\category\راهنمای-انتخاب-کنسول.jpg" />
+    <Content Include="images\ccfb0d857b90411fbedf6fc4ec68173a.jpg" />
+    <Content Include="images\d1bb0209ba014907bfe23a92ab1aaf49.jpg" />
+    <Content Include="images\d2faafa76b83464ba56fbf3ab153dd7b.jpg" />
+    <Content Include="images\f95087f6897d4413be4353ce76a3a3ff.jpg" />
+    <Content Include="images\fe718ce4df1f36e77f83f29d452dac3454662e58_1610801369.jpg" />
+    <Content Include="images\icon\Enamad1.png" />
+    <Content Include="images\icon\logo %281%29.png" />
+    <Content Include="images\icon\logo-samandehi.png" />
+    <Content Include="images\icon\logo.png" />
+    <Content Include="images\icon\samankish.png" />
+    <Content Include="images\icon\Untitled-1.png" />
+    <Content Include="images\icon\zarinpall1.png" />
+    <Content Include="images\icon\zbal-1.png.png" />
+    <Content Include="images\logo\Layer 2.png" />
+    <Content Include="images\logo\Layer 5.png" />
+    <Content Include="images\logo\Layer 6.png" />
+    <Content Include="images\logo\Layer 7.png" />
+    <Content Include="images\logo\Layer 8.png" />
+    <Content Include="images\logo\Layer 9.png" />
+    <Content Include="images\logo\Untitled-22.png" />
+    <Content Include="images\New folder\19197916.jpg" />
+    <Content Include="images\New folder\20944395.jpg" />
+    <Content Include="images\New folder\20945278.jpg" />
+    <Content Include="images\New folder\20945850.jpg" />
+    <Content Include="images\New folder\2643292.png" />
+    <Content Include="images\New folder\264329211111.png" />
+    <Content Include="images\New folder\277da3a0-2a15-4368-8a68-58c7e6cb6b09.png" />
+    <Content Include="images\New folder\4850889.jpg" />
+    <Content Include="images\New folder\58670.jpg" />
+    <Content Include="images\New folder\free-delivery %281%29.png" />
+    <Content Include="images\New folder\free-delivery %282%29.png" />
+    <Content Include="images\New folder\free-delivery %282%292.png" />
+    <Content Include="images\New folder\free-delivery %283%29.png" />
+    <Content Include="images\New folder\free-delivery.png" />
+    <Content Include="images\New folder\Gamers using different devices and playing on mobile phone.jpg" />
+    <Content Include="images\New folder\gamers-playing-online-video-game-huge-joystick-clock-gaming-disorder-video-gaming-addiction_566886-3143.jpg" />
+    <Content Include="images\New folder\location %281%29.png" />
+    <Content Include="images\New folder\location.png" />
+    <Content Include="images\New folder\map.png" />
+    <Content Include="images\product-pictures\00OzmkgnAZcqERRM5TXlwid-4-compressed.jpg" />
+    <Content Include="images\product-pictures\0a272ddab87f4a6e10b4a20f5f22ac87e86e0318_1680021584.jpg" />
+    <Content Include="images\product-pictures\0de5d4ac60160dff05c45416908609a4ac1f93c0_1620466447.jpg" />
+    <Content Include="images\product-pictures\10e8b1e22f712cf6a38a2798c96d5d6e0f5573e5_1605102843.jpg" />
+    <Content Include="images\product-pictures\1588591113.jpg" />
+    <Content Include="images\product-pictures\1588591152.jpg" />
+    <Content Include="images\product-pictures\16251214862.jpg" />
+    <Content Include="images\product-pictures\16737346706.jpg" />
+    <Content Include="images\product-pictures\16737346717.jpg" />
+    <Content Include="images\product-pictures\16ec1d7526e4090873c440cabecfc1b30b26dd32_1613891127.jpg" />
+    <Content Include="images\product-pictures\17e6454d6857dd7ee81230992a950965432caee2_1662566019.jpg" />
+    <Content Include="images\product-pictures\195d848fcc4b3f4841158d07f87a86acf6ccc3e1_1609678336.jpg" />
+    <Content Include="images\product-pictures\1bd651bd-bbcc-4ae9-98e4-4d07289.jpg" />
+    <Content Include="images\product-pictures\1e6f6250a9bfb10767563fbdba36014917465574_1610801374.jpg" />
+    <Content Include="images\product-pictures\1ec8cb179c18c22aad70bcc80d3973e92269511d_1680021588.jpg" />
+    <Content Include="images\product-pictures\2022.jpg" />
+    <Content Include="images\product-pictures\20220010.jpg" />
+    <Content Include="images\product-pictures\202200140.jpg" />
+    <Content Include="images\product-pictures\202201.jpg" />
+    <Content Include="images\product-pictures\2022010.jpg" />
+    <Content Include="images\product-pictures\20221.jpg" />
+    <Content Include="images\product-pictures\2026546542.jpg" />
+    <Content Include="images\product-pictures\23e289571ae07e0b3a40a00b7a50bc5c46dccb1b_1620466449.jpg" />
+    <Content Include="images\product-pictures\254022010.jpg" />
+    <Content Include="images\product-pictures\25a836f1b9b20ec4332906d56405f108efb718b2_1609687266.jpg" />
+    <Content Include="images\product-pictures\2a8c2fcdd68adc365edbc99b8b905d06c3cb217a_1634331270.jpg" />
+    <Content Include="images\product-pictures\31e78c09327cad1790d8f12822bec094be4d242e_1605099175.jpg" />
+    <Content Include="images\product-pictures\43b2630980ed6244e388d2482db2d71859bc05c8_1609679940.jpg" />
+    <Content Include="images\product-pictures\44e346973852b526981f6ac6c3bb49aa158d8eb1_1609679755.jpg" />
+    <Content Include="images\product-pictures\466bcb330ff6d4b5241a846a9e9003469652d294_1634713824.jpg" />
+    <Content Include="images\product-pictures\51VZI9s-JwL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\533.jpg" />
+    <Content Include="images\product-pictures\5331.jpg" />
+    <Content Include="images\product-pictures\53310.jpg" />
+    <Content Include="images\product-pictures\5331010.jpg" />
+    <Content Include="images\product-pictures\53310101.jpg" />
+    <Content Include="images\product-pictures\533101010.jpg" />
+    <Content Include="images\product-pictures\53310154564010.jpg" />
+    <Content Include="images\product-pictures\533146.jpg" />
+    <Content Include="images\product-pictures\5334564.jpg" />
+    <Content Include="images\product-pictures\546gf661.jpg" />
+    <Content Include="images\product-pictures\62d1f9761574afcdeee7efb94be28577647a18a1_1609679933.jpg" />
+    <Content Include="images\product-pictures\638d05b2b58634917aa54206bdc48f2371e245aa_1634713823.jpg" />
+    <Content Include="images\product-pictures\654gf66.jpg" />
+    <Content Include="images\product-pictures\66bfd1f79fe3deed7e6b4294c373f8b4e59f58db_1609719759.jpg" />
+    <Content Include="images\product-pictures\6a35a4c2662a8e893e64ea0f0bab6f41c370ac5d_1634331272.jpg" />
+    <Content Include="images\product-pictures\6c6edf22680f68730d42ffa5ec20d69498da3a8b_1605102844.jpg" />
+    <Content Include="images\product-pictures\6d29d9f113c46382e79f7b12670d31af2d0a468b_1609718791.jpg" />
+    <Content Include="images\product-pictures\6e92f65d0f64c43eb31605276e6ea0712cd651d8_1634331269.jpg" />
+    <Content Include="images\product-pictures\706497154c71b9478ec87317c64d117640b48e87_1605102844.jpg" />
+    <Content Include="images\product-pictures\71D+IuwNliL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\71kuBEPzHmL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\71RY+aMr7jL._AC_SY879_.jpg" />
+    <Content Include="images\product-pictures\71zo3DnczEL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\75cbfcfa869da4b8e602d5de8ce94be3afbff627_1634713820.jpg" />
+    <Content Include="images\product-pictures\7626f690e3e1f94ee9f8c9912214aab32b3bbd31_1605102843.jpg" />
+    <Content Include="images\product-pictures\77ee47b883fac6595769213f6caab14961362374_1610801363.jpg" />
+    <Content Include="images\product-pictures\7EVUQp4Z7qmjb6uijMZrh9.jpg" />
+    <Content Include="images\product-pictures\7f5f3f922b871b363ebaaf766e1429c9cf693421_1634331268.jpg" />
+    <Content Include="images\product-pictures\813ByW4nX3L._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\81i5ppaknxL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\81J82oNNe6L._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\81qWp1oCKuL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\81vRABoOR6L._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\81zce3i1UhL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\84670324167361d6bc4d1a29fa317826a5c69ba3_1609678337.jpg" />
+    <Content Include="images\product-pictures\878b4084d2247a504341d2e57f919cada4eddbb3_1613891124.jpg" />
+    <Content Include="images\product-pictures\8ca6050b924d17aff2bb596eed03e7d7684c24c1_1680026844.jpg" />
+    <Content Include="images\product-pictures\8f93832610ec8c436e2e3da670596bcb9783d066_1609678333.jpg" />
+    <Content Include="images\product-pictures\911dOSz8TpL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\91g4QYziQ7L._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\91ItfOdWGfL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\91KHOkaGAEL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\91KueEqcK1L._AC_SY879_.jpg" />
+    <Content Include="images\product-pictures\91UXn2q4YtL._AC_SX679_.jpg" />
+    <Content Include="images\product-pictures\9688d847e47f066cfde283218b7ae6e680a4af3e_1605104388.jpg" />
+    <Content Include="images\product-pictures\9a685d18fab47fb4aeb8aff2df2604b1cbfb9f17_1676997652.jpg" />
+    <Content Include="images\product-pictures\9b2c229bbc5ddc3d144daf93c11532dea8520d2a_1634713823.jpg" />
+    <Content Include="images\product-pictures\a6914c15c88d18c086483c8afb0ca1f7d2bd30c6_1609679928.jpg" />
+    <Content Include="images\product-pictures\a86107af7d18da49d727bc686b380c23c0fe2aa2_1605100836.jpg" />
+    <Content Include="images\product-pictures\a9352e06e99ef37c2585cd1fcf3148b0f4aff22b_1620466452.jpg" />
+    <Content Include="images\product-pictures\ad04e95d06859b9a28a0c75d88cc285f3b8c5efd_1613891126.jpg" />
+    <Content Include="images\product-pictures\b10bd9562ef4fc5473d1fc188d61183cd5063a32_1620469596.jpg" />
+    <Content Include="images\product-pictures\c2aeb34d-a752-4b54-912d-be9a3c9e4ff3.jpg" />
+    <Content Include="images\product-pictures\codenames2.jpg" />
+    <Content Include="images\product-pictures\d1f073c56d6b2adc42cd28de32b81ec3d07dff7f_1609678334.jpg" />
+    <Content Include="images\product-pictures\d59a0b318e9dd1eace04c5e1ea1aed1da74f9c80_1609679752.jpg" />
+    <Content Include="images\product-pictures\daste2-scaled.jpg" />
+    <Content Include="images\product-pictures\def8b80fbd08c7d2e24c41e326263e94f63c836f_1609679751.jpg" />
+    <Content Include="images\product-pictures\digi-editionbfb146d7aa.jpg" />
+    <Content Include="images\product-pictures\DualSense-blue-1.jpg" />
+    <Content Include="images\product-pictures\DualSense-blue-2.jpg" />
+    <Content Include="images\product-pictures\dualsense-charging-station-ps5-white-01-1681854093.jpg" />
+    <Content Include="images\product-pictures\dualsense-charging-station-ps5-white-02.jpg" />
+    <Content Include="images\product-pictures\dualsense-charging-station-ps5-white-05-1.jpg" />
+    <Content Include="images\product-pictures\dualsense-charging-station-ps5-white-05.jpg" />
+    <Content Include="images\product-pictures\dualsense-charging-station-ps5-white-06.jpg" />
+    <Content Include="images\product-pictures\dualsense-controller_jpg.jpg" />
+    <Content Include="images\product-pictures\dualsense-hero-ps5-02-en-02jul20.jpg" />
+    <Content Include="images\product-pictures\dualsense-wireless-controller-cosmic-starlight-blue-01.jpg" />
+    <Content Include="images\product-pictures\dualsense-wireless-controller-cosmic-starlight-blue-03.jpg" />
+    <Content Include="images\product-pictures\dualsense-wireless-controller-cosmic-starlight-blue-04.jpg" />
+    <Content Include="images\product-pictures\dualsense-wireless-controller-cosmic-starlight-blue-for-ps5.jpg" />
+    <Content Include="images\product-pictures\dualsense-wireless-controller-for-ps5-white-11.jpg" />
+    <Content Include="images\product-pictures\e404cd1d8ccadb269fce210e72c94278605fb938_1609680211.jpg" />
+    <Content Include="images\product-pictures\edd48c979dc445aa5e16cc864f3a6d9920a92c75_1605104378.jpg" />
+    <Content Include="images\product-pictures\fb46ab4f5a0ee6658d2b35c270c7d814e8babe1a_1609722782.jpg" />
+    <Content Include="images\product-pictures\fe718ce4df1f36e77f83f29d452dac3454662e58_1610801369.jpg" />
+    <Content Include="images\product-pictures\gf66.jpg" />
+    <Content Include="images\product-pictures\gf6610.jpg" />
+    <Content Include="images\product-pictures\gf66110.jpg" />
+    <Content Include="images\product-pictures\gf661110.jpg" />
+    <Content Include="images\product-pictures\gf661410.jpg" />
+    <Content Include="images\product-pictures\gf665465110.jpg" />
+    <Content Include="images\product-pictures\LEGION-PRO-7.2.jpg" />
+    <Content Include="images\product-pictures\LEGION-PRO-7.jpg" />
+    <Content Include="images\product-pictures\Legion7..jpg" />
+    <Content Include="images\product-pictures\Legion7.2.jpg" />
+    <Content Include="images\product-pictures\Legion7.6.jpg" />
+    <Content Include="images\product-pictures\Legion7.9.jpg" />
+    <Content Include="images\product-pictures\microsoft-xbox-series-s-game-console-shot-03.jpg" />
+    <Content Include="images\product-pictures\microsoft-xbox-series-x-game-console-shot-11.jpg" />
+    <Content Include="images\product-pictures\original-1.jpg" />
+    <Content Include="images\product-pictures\photo_2021-12-13_18-09-13.jpg" />
+    <Content Include="images\product-pictures\playstation-5-testi-muropaketti-20-1024x591-1.jpg" />
+    <Content Include="images\product-pictures\productImage.png" />
+    <Content Include="images\product-pictures\product_350.jpg" />
+    <Content Include="images\product-pictures\product_600.jpg" />
+    <Content Include="images\product-pictures\Screenshot_2020-11-25 xbox-series-x-s-console-hoyle-studio-.png" />
+    <Content Include="images\product-pictures\series-s-4da2cfe0-f2cb-11ea-8bff-eae8954e2a18.png" />
+    <Content Include="images\product-pictures\series-s-ZdDCt52YvmM75PkX8tbGcS.jpg" />
+    <Content Include="images\product-pictures\series-x-games-2.jpg" />
+    <Content Include="images\product-pictures\series-xxxx-2.jpg" />
+    <Content Include="images\product-pictures\Sony-PS5-digital-edition-game-console-shot-850x478-02.jpg" />
+    <Content Include="images\product-pictures\Sony-PS5-digital-edition-game-console-shot-850x478-03.jpg" />
+    <Content Include="images\product-pictures\Sony-PS5-digital-edition-game-console-shot-850x478-04.jpg" />
+    <Content Include="images\product-pictures\Sony-PS5-digital-edition-game-console-shot-850x478-05.jpg" />
+    <Content Include="images\product-pictures\Sony-PS5-digital-edition.jpg" />
+    <Content Include="images\product-pictures\steam-deck-512-gb-gaming-console-01-1668937255.jpg" />
+    <Content Include="images\product-pictures\steam-deck-512-gb-gaming-console-02-1668937255.jpg" />
+    <Content Include="images\product-pictures\steam-deck-512-gb-gaming-console-04-1668937256.jpg" />
+    <Content Include="images\product-pictures\steam-deck-512-gb-gaming-console-11-1668937258.jpg" />
+    <Content Include="images\product-pictures\steamdeck1.jpg" />
+    <Content Include="images\product-pictures\Steam_Deck_touchscreen.jpg" />
+    <Content Include="images\product-pictures\xbox-elite-wireless-contoller-series-2-990x556-1.jpg" />
+    <Content Include="images\product-pictures\xbox-elite-wireless-controller-series-09.jpg" />
+    <Content Include="images\product-pictures\xbox-elite-wireless-controller-series-2-01.jpg" />
+    <Content Include="images\product-pictures\xbox-elite-wireless-controller-series-2-02.jpg" />
+    <Content Include="images\product-pictures\xbox-elite-wireless-controller-series-2-04.jpg" />
+    <Content Include="images\product-pictures\xbox-series-s-PNNW7XTBxW3uxY92e-1.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-01.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-02-1.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-02.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-03.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-04.jpg" />
+    <Content Include="images\product-pictures\xbox-wireless-controller-new-series-for-xbox-series-x-s-Robot-White-06.jpg" />
+    <Content Include="images\product-pictures\xboxs3-750x375.jpg" />
+    <Content Include="images\product-pictures\xboxseriesscont.jpg" />
+    <Content Include="images\product-pictures\XboxSeriesXUX_HERO.jpg" />
+    <Content Include="images\products\10e8b1e22f712cf6a38a2798c96d5d6e0f5573e5_1605102843.jpg" />
+    <Content Include="images\products\117525069.jpg" />
+    <Content Include="images\products\17e6454d6857dd7ee81230992a950965432caee2_1662566019.jpg" />
+    <Content Include="images\products\51AX747o4vL._AC_SX679_.jpg" />
+    <Content Include="images\products\568eda0712f99a6b74e402eb90c69808c15b495b_1643217818.jpg" />
+    <Content Include="images\products\5c75bb673878657238e7ef7af43a6c51a8584f51_1610801530.jpg" />
+    <Content Include="images\products\64d1f9cb0442556665f1973e7c366e05132bcf27_1620466389.jpg" />
+    <Content Include="images\products\71DIuwNliLX679.jpg" />
+    <Content Include="images\products\75cbfcfa869da4b8e602d5de8ce94be3afbff627_1634713820.jpg" />
+    <Content Include="images\products\7f5f3f922b871b363ebaaf766e1429c9cf693421_1634331268.jpg" />
+    <Content Include="images\products\81i5ppaknxL._AC_SX679_.jpg" />
+    <Content Include="images\products\81zce3i1UhL._AC_SX679_.jpg" />
+    <Content Include="images\products\918TkODhXPL._AC_SX679_.jpg" />
+    <Content Include="images\products\91YNJM4oyhL._AC_SX679_.jpg" />
+    <Content Include="images\products\9a685d18fab47fb4aeb8aff2df2604b1cbfb9f17_1676997652.jpg" />
+    <Content Include="images\products\bdcd4d09659b9a6527ff2e98d8780b1efd5f6ec3_1638820962.jpg" />
+    <Content Include="images\products\d1476a05bc84a98521a53fad140efa060a6c1bf9_1605099191.jpg" />
+    <Content Include="images\products\e8a17824c0e3a6124f7f658414b7bbeb1a1c9897_1613891125.jpg" />
+    <Content Include="images\products\ecef07e1c8f8e1ccb13acd8ff4d9cd7b666429e4_1680021591.jpg" />
+    <Content Include="images\products\edd48c979dc445aa5e16cc864f3a6d9920a92c75_1605104378.jpg" />
+    <Content Include="images\products\fe1424bb03add04e7c173f49417e1b07ed358eb8_1605100837.jpg" />
+    <Content Include="images\products\lenovo-legion-7-2021-1-1500x1500.jpg" />
+    <Content Include="images\products\Lenovo-Legion-7-Pro-1-1500x1500.jpg" />
+    <Content Include="images\products\msi-katana-gf66-n1-1500x1500.jpg" />
+    <Content Include="images\products\valve-steam-deck-n1-1500x1500 %281%29.jpg" />
+    <Content Include="images\products\valve-steam-deck-n1-1500x1500.jpg" />
+    <Content Include="images\products\xbox-series-s-n1-1500x1500.jpg" />
+    <Content Include="images\products\xbox-series-x-n1-1500x1500.jpg" />
+    <Content Include="images\products\Zenbook-Pro-16X-OLED-7-1500x1500.jpeg" />
+    <Content Include="images\PS5-login.png" />
+    <Content Include="images\Screenshot 2023-03-06 100703.png" />
+    <Content Include="images\Screenshot 2023-03-06 100744.png" />
+    <Content Include="images\Screenshot 2023-03-06 100811.png" />
+    <Content Include="images\Screenshot 2023-03-06 101009.png" />
+    <Content Include="images\Screenshot 2023-03-06 101031.png" />
+    <Content Include="images\Screenshot 2023-03-06 101121.png" />
+    <Content Include="images\Screenshot 2023-03-06 101149.png" />
+    <Content Include="images\Screenshot 2023-03-06 101205.png" />
+    <Content Include="images\Screenshot 2023-03-06 101221.png" />
+    <Content Include="images\Screenshot 2023-03-06 101242.png" />
+    <Content Include="images\social-media\instagram.png" />
+    <Content Include="images\social-media\linkedin.png" />
+    <Content Include="images\social-media\mail.png" />
+    <Content Include="images\social-media\telegram.png" />
+    <Content Include="images\social-media\whatsapp.png" />
+    <Content Include="images\users\0f025e04b1a24cc0ba7b16ab975b89a6.jpg" />
+    <Content Include="images\users\290f0376cc584d3780184b8e8e3b3721.jpg" />
+    <Content Include="images\users\4544ecd810fa4e2cb01eed58db1529f5.jpg" />
+    <Content Include="images\users\52b34591cb374028a69b03d16900270e.jpg" />
+    <Content Include="images\users\809178f7a9eb46d39d1a578caa78bfe6.jpg" />
+    <Content Include="images\users\83dea4004abd4b299e41a0acf14be9fe.jpg" />
+    <Content Include="images\users\9cac7a600a4f4bc9aa478918b598d84a.jpg" />
+    <Content Include="images\users\d9d06d2dadd043cab14c76e2cf77a7c6.jpg" />
+    <Content Include="images\users\dbf9b9819f3740418cea6c7092eac41b.jpg" />
+    <Content Include="images\users\fc7779f80d2e4a02923a252bb7501035.jpg" />
+    <Content Include="images\users\user.png" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\UserViewModel.cs" />
+    <Compile Include="ExtentionMethods.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Cart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Comment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Description.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Discount.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Group.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Picture.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_ProductCart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Property.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Question.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_Specification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\T_User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
+    <Content Include="font\Afrigha Farsi Font.ttf" />
+    <Content Include="font\AFSANEH.ttf" />
+    <Content Include="font\Digi Delbar3.otf" />
+    <Content Include="font\Digi Delbar3.ttf" />
+    <Content Include="font\Digi Hamishe Bold.otf" />
+    <Content Include="font\Digi Hamishe Bold.ttf" />
+    <Content Include="font\Digi Hamishe Regular.otf" />
+    <Content Include="font\Digi Hamishe Regular.ttf" />
+    <Content Include="font\Digi Koodak Bold.otf" />
+    <Content Include="font\Digi Koodak Bold.ttf" />
+    <Content Include="font\Digi Rastin Bold.otf" />
+    <Content Include="font\Digi Rastin Bold.ttf" />
+    <Content Include="font\Far_BardiyaBd.ttf" />
+    <Content Include="font\Far_Morvarid.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRAban.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRAmir.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRArshia.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRBadr.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRBadrBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRBadrIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRCompset.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRCompsetBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRCompsetIra.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRDastNevis.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRDavat.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRElham.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IREntezar.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRFarnaz.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRFerdosi.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRHoma.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRJadid.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRKamran.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRKhorasan.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRKoodak.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRLotus.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRLotusBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRLotusIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMaryam.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMashhad.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMehr.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMitra.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMitraBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMitraIranic_.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRMomtaz.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNarges.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNaskh.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNazanin.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNazaninBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNazaninIrani.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNazli.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRNazliBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRPooya.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRRoya.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRRoyaBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRRoyaIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRShiraz.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRSina.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTabassom.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTehran.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTerafik.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTerafikBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTerafikIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRTitr.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRYakout.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRYakoutBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRYakoutIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRYekan.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRYekanBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRZar.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRZarBold.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRZarIranic.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\IRZeytoon.ttf" />
+    <Content Include="font\Fonts-B_YasDL.com\www.yasdl.com.url" />
+    <Content Include="font\Fonts-B_YasDL.com\YasDL.com.url" />
+    <Content Include="font\IRANYekan.ttf" />
+    <Content Include="font\IRANYekan.woff" />
+    <Content Include="font\IRANYekan.woff2" />
+    <Content Include="font\Morvarid Farsi Font.ttf" />
+    <Content Include="font\Negaar Bold.ttf" />
+    <Content Include="font\Negaar Regular.ttf" />
+    <Content Include="font\SH Panda Font.ttf" />
+    <Content Include="font\UFONT.url" />
+    <Content Include="font\Vazir.ttf" />
+    <Content Include="font\Vazir.woff" />
+    <Content Include="font\Vazir.woff2" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error404.cshtml" />
+    <Content Include="Views\Shared\NavBar.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_PFooter.cshtml" />
+    <Content Include="Views\Shared\_PNewProducts.cshtml" />
+    <Content Include="Views\User\asd.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\UserPanel.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\User\Wishlist.cshtml" />
+    <Content Include="Views\Shared\NewProducts.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54555</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44398/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

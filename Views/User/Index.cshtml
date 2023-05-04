@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BaziMarket1.Models.T_User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRegisterDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserIsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Role.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRegisterDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserIsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Role.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { UserId=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { UserId=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { UserId=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

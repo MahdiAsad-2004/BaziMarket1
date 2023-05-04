@@ -1,0 +1,77 @@
+﻿@model BaziMarket1.Models.T_User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<form action="Edit" method="post" enctype="multipart/form-data">
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input value="@Model.UserId" id="UserId" name="UserId" />
+    <input value="@Model.UserPassword" id="UserPassword" name="UserPassword" />
+    <input value="@Model.UserRoleId" id="UserRoleId" name="UserRoleId" />
+    <input value="@Model.ProfileImage" id="ProfileImage" name="ProfileImage" />
+    <!-- Form Group (username)-->
+<div class="mb-2">
+    <label class="small mb-1 card-lable" for="Username">نام کابری</label>
+    <input class="form-control" id="Username" name="Username" readonly value="@Model.Username">
+</div>
+    <!-- Form Row-->
+    <div class="row gx-3 mb-2">
+        <!-- Form Group (first name)-->
+        <div class="col-md-6">
+            <label class="small mb-1 card-lable" for="UserFirstName">نام</label>
+            <input class="form-control" id="UserFirstName" name="UserFirstName" maxlength="20" value="@Model.UserFirstName">
+            @Html.ValidationMessageFor(model => model.UserFirstName, "", new { @class = "text-danger validation-error" })
+        </div>
+        <!-- Form Group (last name)-->
+        <div class="col-md-6">
+            <label class="small mb-1 card-lable" for="UserLastName">نام خانوادگی</label>
+            <input class="form-control" id="UserLastName" name="UserLastName" value="@Model.UserLastName" maxlength="20">
+            @Html.ValidationMessageFor(model => model.UserLastName, "", new { @class = "text-danger validation-error" })
+        </div>
+    </div>
+    <!-- Form Group (email address)-->
+    <div class="mb-2">
+        <label class="small mb-1 card-lable" for="UserAddress">آدرس</label>
+        <textarea class="form-control" name="UserAddress" id="UserAddress" rows="5" maxlength="300">@Model.UserAddress</textarea>
+    </div>
+    <!-- Form Row-->
+    <div class="row gx-3 mb-3">
+        <!-- Form Group (phone number)-->
+        <div class="col-md-6">
+            <label class="small mb-1 card-lable" for="UserRegisterDate">تاریخ ثبت نام</label>
+            <input class="form-control" id="UserRegisterDate" name="UserRegisterDate" readonly value="@Model.UserRegisterDate">
+        </div>
+        <!-- Form Group (birthday)-->
+        <div class="col-md-6">
+            <label class="small mb-1 card-lable" for="UserIsActive">وضعیت</label>
+            <select class="form-control" id="UserIsActive" name="UserIsActive">
+                @if (Model.UserIsActive == true)
+                {
+                    <option style="color:limegreen;" value="true" selected>فعال</option>
+
+                }
+                else
+                {
+                    <option style="color:red" value="false" selected>غیر فعال</option>
+                }
+            </select>
+        </div>
+    </div>
+    <!-- Save changes button-->
+    <button class="btn btn-primary" type="submit">ثبت تغییرات</button>
+
+</form>
+
+
+
+
+<script src="~/Scripts/jquery-3.6.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

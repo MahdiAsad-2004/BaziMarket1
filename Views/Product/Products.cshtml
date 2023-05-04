@@ -1,0 +1,213 @@
+﻿@model IEnumerable<BaziMarket1.Models.T_Product>
+@{
+    ViewBag.Title = "AllProducts";
+}
+
+
+<div class="products-category">
+    <figure class="products-category-item">
+        <a class="products-category-item-image" href="https://localhost:44398//Product/Products?Category=1&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="~/images/console/راهنمای-انتخاب-کنسول.jpg" alt="">
+        </a>
+        <figcaption class="products-category-item-caption">
+            <a href="https://localhost:44398//Product/Products?Category=1&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">کنسول های خانگی</a>
+        </figcaption>
+    </figure>
+    <figure class="products-category-item">
+        <a class="products-category-item-image" href="https://localhost:44398//Product/Products?Category=4&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="~/images/laptop gaming/download.png" alt="">
+        </a>
+        <figcaption class="products-category-item-caption">
+            <a href="https://localhost:44398//Product/Products?Category=4&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">لپ تاپ گیمینگ</a>
+        </figcaption>
+    </figure>
+    <figure class="products-category-item">
+        <a class="products-category-item-image" href="https://localhost:44398//Product/Products?Category=5&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="~/images/board game/collageBoardgame.png" alt="">
+        </a>
+        <figcaption class="products-category-item-caption">
+            <a href="https://localhost:44398//Product/Products?Category=5&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">بازی رومیزی</a>
+        </figcaption>
+    </figure><figure class="products-category-item">
+        <a class="products-category-item-image" href="https://localhost:44398//Product/Products?Category=2&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="~/images/action figure/collageactionFigure.png" alt="">
+        </a>
+        <figcaption class="products-category-item-caption">
+            <a href="https://localhost:44398//Product/Products?Category=2&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">اکشن فیگور</a>
+        </figcaption>
+    </figure><figure class="products-category-item">
+        <a class="products-category-item-image" href="https://localhost:44398//Product/Products?Category=3&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="~/images/console accessories/collageconsoleAccessories.png" alt="">
+        </a>
+        <figcaption class="products-category-item-caption">
+            <a href="https://localhost:44398//Product/Products?Category=3&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">لوازم گیمینگ</a>
+        </figcaption>
+    </figure>
+</div>
+
+
+<main class="main-products">
+
+    @if (ViewBag.CategoryName == null)
+    {
+        <p class="products-title">همه ی محصولات</p>
+    }
+    else
+    {
+        <p class="products-title">@ViewBag.CategoryName</p>
+    }
+
+
+
+    <form action="Products" method="post" class="product-filters" oninput="SPrice.value = parseInt(startPrice.value) , EPrice.value = parseInt(endPrice.value)">
+        <input value="1" name="Page" id="Page" hidden />
+        <input value="@ViewBag.Category" name="Category" id="Category" hidden />
+        <div class="products-filters-item">
+            <label for="sortBy">مرتب سازی بر اساس </label>
+            <select name="SortBy" id="sortBy">
+                <option>پیشفرض</option>
+                <option value="1">ارزان ترین</option>
+                <option value="2">گران ترین</option>
+                <option value="3">جدید ترین</option>
+                <option value="4">پرفروش ترین</option>
+                <option value="5">بیشترین تخیف</option>
+            </select>
+        </div>
+        <div class="products-filters-item">
+            <label for="">فقط کالا ها موجود</label>
+            <input value="1" type="checkbox" name="AvailableGoods" id="availableGoods" style="width: 20px; height:20px;">
+        </div>
+        <div class="products-filters-item" style="width: 25%;">
+            <label for="startPrice" style="width: 90%;">قیمت از </label>
+            <input type="number" name="StartPrice" id="startPrice" min="0" max="500000000" step="100000">
+            <i>تومان</i>
+        </div>
+        <div class="products-filters-item" style="width: 25%;">
+            <label for="endPrice" style="width: 90%;">تا </label>
+            <input type="number" name="EndPrice" id="endPrice" min="0" max="500000000" step="100000">
+            <i>تومان</i>
+        </div>
+        <div class="products-filters-item" style="width:8%;">
+            <button type="submit">
+                اعمال فیلتر ها
+            </button>
+        </div>
+    </form>
+
+    @if (ViewBag.SortName != null || ViewBag.AvailableGoods != null || ViewBag.StartPrice != null || ViewBag.EndPrice != null)
+    {
+        <ul class="products-showfilters">
+            <li>فیلتر ها :</li>
+            @if (ViewBag.SortName != null)
+            {
+                <li>@ViewBag.SortName</li>
+            }
+            @if (ViewBag.AvailableGoods != null)
+            {
+                <li>فقط کالا های موجود  <span class="material-symbols-outlined">check_box</span></li>
+            }
+            @if (ViewBag.StartPrice != null)
+            {
+                int a = ViewBag.StartPrice;
+                <li>قیمت از : @a.DevideMoneyNumber() تومان</li>
+            }
+            @if (ViewBag.EndPrice != null)
+            {
+                int b = ViewBag.EndPrice;
+                <li>قیمت تا : @b.DevideMoneyNumber() تومان</li>
+            }
+        </ul>
+    }
+
+
+
+    <div class="products">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="products-product">
+                    <div class="product-lables">
+                        @if (item.ProductInStockCount < 1)
+                        {
+                            <p class="product-lables-available">ناموجود</p>
+                        }
+                        @if (item.ProductDiscount != null)
+                        {
+                            <p class="product-lables-discount">@item.ProductDiscount %</p>
+                        }
+                    </div>
+                    <a href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId" class="product-Image">
+                        <img src="~/images/products/@item.ProductImage" alt="">
+                    </a>
+                    <div class="product-Title">
+                        <a class="products-product-a" href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId">@item.ProductName</a>
+                    </div>
+                    <div class="product-Price">
+                        @if (item.ProductDiscount == null)
+                        {
+                            <p class="product-Price-New"><b>@item.ProductPrice.DevideMoneyNumber()</b>&ensp;تومان</p>
+                        }
+                        else
+                        {
+                            int newPrice = (int)(item.ProductPrice - (item.ProductPrice * item.ProductDiscount.Value / 100));
+                            <p class="product-Price-Old"><ins>@item.ProductPrice.DevideMoneyNumber()</ins> تومان</p>
+                            <p class="product-Price-New"><b>@newPrice.DevideMoneyNumber()</b> تومان</p>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>
+                Not Found
+            </h2>
+        }
+    </div>
+
+
+
+
+    <div class="pagination">
+        @if (ViewBag.Page - 1 >= 1)
+        {
+            int j = ViewBag.Page - 1;
+            <a href="https://localhost:44398//Product/Products?Category=@ViewBag.Category&UserId=@ViewBag.UserId&Page=@j&SortBy=@ViewBag.SortBy&AvailableGoods=@ViewBag.AvailableGoods&StartPrice=@ViewBag.StartPrice&EndPrice=@ViewBag.EndPrice">&raquo;</a>
+        }
+        else
+        {
+            <a>&raquo;</a>
+        }
+        @for (int i = 1; i <= ViewBag.PageCount; i++)
+        {
+            if (i == ViewBag.Page)
+            {
+                //Html.RenderAction("Products", new { UserId = ViewBag.UserId, Category = ViewBag.Category, Page = i, SortBy = ViewBag.SortBy, AvailableGoods = ViewBag.AvailableGoods, StartPrice = ViewBag.StartPrice, EndPrice = ViewBag.EndPrice });
+                <a href="https://localhost:44398//Product/Products?Category=@ViewBag.Category&UserId=@ViewBag.UserId&Page=@i&SortBy=@ViewBag.SortBy&AvailableGoods=@ViewBag.AvailableGoods&StartPrice=@ViewBag.StartPrice&EndPrice=@ViewBag.EndPrice" class="active">@i</a>
+            }
+            else
+            {
+                //Html.RenderAction("Products", new { UserId = ViewBag.UserId, Category = ViewBag.Category, Page = i, SortBy = ViewBag.SortBy, AvailableGoods = ViewBag.AvailableGoods, StartPrice = ViewBag.StartPrice, EndPrice = ViewBag.EndPrice });
+                <a href="https://localhost:44398//Product/Products?Category=@ViewBag.Category&UserId=@ViewBag.UserId&Page=@i&SortBy=@ViewBag.SortBy&AvailableGoods=@ViewBag.AvailableGoods&StartPrice=@ViewBag.StartPrice&EndPrice=@ViewBag.EndPrice">@i</a>
+            }
+        }
+        @if (ViewBag.Page + 1 <= ViewBag.PageCount)
+        {
+            int j = ViewBag.Page + 1;
+            <a href="https://localhost:44398//Product/Products?Category=@ViewBag.Category&UserId=@ViewBag.UserId&Page=@j&SortBy=@ViewBag.SortBy&AvailableGoods=@ViewBag.AvailableGoods&StartPrice=@ViewBag.StartPrice&EndPrice=@ViewBag.EndPrice">&laquo;</a>
+        }
+        else
+        {
+            <a>&laquo;</a>
+        }
+
+    </div>
+
+
+
+
+</main>
+
+
+

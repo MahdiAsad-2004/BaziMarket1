@@ -1,0 +1,94 @@
+﻿
+<nav class="nav1">
+    <div class="nav1-Div">
+        <ul class="nav1-RightSide">
+            <li>
+                <a href="https://localhost:44398/?UserId=@ViewBag.UserId"><span class="material-symbols-outlined">house</span> خانه </a>
+            </li>
+            <li>
+                <a href="https://localhost:44398//Product/Products?Category=0&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice="><span class="material-symbols-outlined">widgets</span> محصولات</a>
+            </li>
+            <li>
+                <a href="https://www.google.com"><span class="material-symbols-outlined">article</span> مقالات</a>
+            </li>
+            <li>
+                <a href="https://www.google.com">درباره ما</a>
+            </li>
+            <li>
+                <a href="https://www.google.com">تماس با ما</a>
+            </li>
+        </ul>
+
+        <div class="nav1-WebsiteLogo">
+            <img src="~/images/logo/Layer 9.png" usemap="#image-map-logo">
+            <map name="image-map-logo">
+                <area target="" alt="" title="" href="https:\\google.com"
+                      coords="16,57,32,24,51,12,95,10,152,-1,158,6,177,42,180,82,46,78,28,73" shape="poly">
+                <area target="" alt="" title="" href="https:\\google.com" coords="1,82,250,200" shape="rect">
+            </map>
+        </div>
+
+        <ul class="nav1-LeftSide">
+            @{
+                if (ViewBag.Name == null)
+                {
+                    <li class="nav1-LeftSide-Signin" style="height:40px;">
+
+                        <a href="https://localhost:44398/User/Login">
+                            <span class="material-symbols-outlined">person</span> ورود / ثبت
+                            نام
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav1-LeftSide-Signin dropdown">
+                        <button class="dropbtn">
+                            <span style="font-size:17px; padding-bottom:5px;">@ViewBag.Name</span>
+                            <span style="font-size:15px">( @ViewBag.Username )</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="https://localhost:44398/User/UserPanel?UserId=@ViewBag.UserId">
+                                <span class="material-symbols-outlined">account_box</span>  پنل کاربری
+                            </a>
+                            <a href="https://localhost:44398">
+                                <span class="material-symbols-outlined">logout</span>  خروج
+                            </a>
+                        </div>
+                    </li>
+
+                }
+
+            }
+
+
+
+            @if (ViewBag.UserId != null)
+            {
+                <li class="nav1-LeftSide-ShoppingCart">
+                    <a href="https://localhost:44398/Cart/Cart?UserId=@ViewBag.UserId">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </a>
+                    @if (ViewBag.CartCount > 0 && ViewBag.CartCount != null)
+                    {
+                        <p>@ViewBag.CartCount</p>
+                    }
+                </li>
+            }
+
+
+            <li>
+                <form class="nav1-LeftSide-SearchBar" action="">
+                    <input type="text" name="SearchValue" id="searchValue" placeholder="نام یا کد محصول ....">
+                    <button type="submit">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </form>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+

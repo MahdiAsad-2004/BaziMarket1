@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d5c0b89cb2047a68ff0ce0ed0135c75" Name="Diagram1">
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Cart" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Comment" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Description" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Group" Width="1.5" PointX="1.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Picture" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Product" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_ProductCart" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Property" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Question" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Role" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Specification" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_User" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_BaziMarket_Model.T_Discount" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Cart_T_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Score_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Score_T_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Description_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Group_T_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Product_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Picture_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_ProductCart_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Question_T_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Question_T_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK__T_User__UserRole__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.T_Cart_ProductCart" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.T_Product_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.T_Product_Specification" ManuallyRouted="false" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Discount_T_Group" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Discount_T_Product" />
+        <AssociationConnector Association="Db_BaziMarket_Model.FK_T_Question_T_User1" />
+        <AssociationConnector Association="Db_BaziMarket_Model.T_User_Product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

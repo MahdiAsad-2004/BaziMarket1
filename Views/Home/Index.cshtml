@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="intro">
+    <div class="intro-RightSide">
+        <div class="intro-RightSide-Title">
+            <a href="https://www.google.com"> بازی مارکت </a>
+            <p> , همراه شما در اوقات فراغت </p>
+        </div>
+        <div class="intro-RightSide-Picture">
+            <img src="images/logo/Untitled-23.png" alt="">
+        </div>
+    </div>
+    <div class="intro-LeftSide">
+        <div>
+            <p>امکان خرید قسطی</p>
+            <img src="images/New folder/264329211111.png" alt="">
+        </div>
+        <div>
+            <p>ارسال رایگان</p>
+            <img src="images/New folder/free-delivery (2)2.png" alt="">
+        </div>
+        <div>
+            <p>ارسال به سراسر ایران</p>
+            <img src="images/New folder/location.png" alt="">
+        </div>
+    </div>
+</div>
+
+
+
+<div class="category">
+    <p class="category-Title">دسته بندی ها</p>
+    <div class="category-Items">
+        <a class="category-Items-Item category-Items-Item1" href="https://localhost:44398//Product/Products?Category=1&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="images/console/راهنمای-انتخاب-کنسول.jpg">
+            <p>کنسول های خانگی</p>
+        </a>
+        <a class="category-Items-Item category-Items-Item2" href="https://localhost:44398//Product/Products?Category=4&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="images/laptop gaming/download.png">
+            <p>لپ تاپ گیمینگ</p>
+        </a>
+        <a class="category-Items-Item category-Items-Item3" href="https://localhost:44398//Product/Products?Category=5&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="images/board game/collageBoardgame.png">
+            <p>بازی رومیزی</p>
+        </a>
+        <a class="category-Items-Item category-Items-Item3" href="https://localhost:44398//Product/Products?Category=2&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="images/action figure/collageactionFigure.png">
+            <p>اکشن فیگور</p>
+        </a>
+        <a class="category-Items-Item category-Items-Item3" href="https://localhost:44398//Product/Products?Category=3&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=">
+            <img src="images/console accessories/collageconsoleAccessories.png">
+            <p>لوازم جانبی گیمینگ</p>
+        </a>
+    </div>
+</div>
+
+@Html.Action("NewProducts", "Home")
+@*@Html.Partial("_PNewProducts")*@
+
+
+
+
+
+

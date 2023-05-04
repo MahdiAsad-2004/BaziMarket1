@@ -1,0 +1,1223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Db_BaziMarket_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="T_Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" Nullable="false" />
+          <Property Name="CartCost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Cart_ProductCart">
+          <Key>
+            <PropertyRef Name="CartId" />
+            <PropertyRef Name="ProductCartId" />
+          </Key>
+          <Property Name="CartId" Type="int" Nullable="false" />
+          <Property Name="ProductCartId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentRate" Type="int" Nullable="false" />
+          <Property Name="CommentUserId" Type="int" />
+          <Property Name="CommentProductId" Type="int" />
+          <Property Name="CommentText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CommentRegisterId" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Description">
+          <Key>
+            <PropertyRef Name="DescriptionId" />
+          </Key>
+          <Property Name="DescriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DecriptionTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="DecriptionContent" Type="ntext" />
+          <Property Name="DescriptionImageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DescriptionProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Discount">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="DiscountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountPercent" Type="float" Nullable="false" />
+          <Property Name="DiscountCode" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DiscountMaximum" Type="int" />
+          <Property Name="DiscountGroupId" Type="int" />
+          <Property Name="DiscountProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="GroupParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Picture">
+          <Key>
+            <PropertyRef Name="PictureId" />
+          </Key>
+          <Property Name="PictureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureName" Type="varchar" MaxLength="100" />
+          <Property Name="PictureProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductGroupId" Type="int" Nullable="false" />
+          <Property Name="ProductPrice" Type="int" Nullable="false" />
+          <Property Name="ProductInStockCount" Type="int" Nullable="false" />
+          <Property Name="ProductDiscount" Type="float" />
+          <Property Name="ProductImage" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductSold" Type="int" Nullable="false" />
+          <Property Name="ProductRegisterDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_Product_Property">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Product_Specification">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="SpecificationId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SpecificationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ProductCart">
+          <Key>
+            <PropertyRef Name="ProductCartId" />
+          </Key>
+          <Property Name="ProductCartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCartCount" Type="int" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyContent" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_Question">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionText" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="QuestionRegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="AnswerText" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnswerUserId" Type="int" />
+          <Property Name="AnswerRegisterDate" Type="datetime" />
+          <Property Name="QuestionProductId" Type="int" />
+          <Property Name="QuestionUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="T_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Specification">
+          <Key>
+            <PropertyRef Name="SpecificationId" />
+          </Key>
+          <Property Name="SpecificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecificationTitle" Type="nvarchar" MaxLength="30" />
+          <Property Name="SpecificationText" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserRegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="UserIsActive" Type="bit" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="300" />
+          <Property Name="UserRoleId" Type="tinyint" Nullable="false" />
+          <Property Name="UserFirstName" Type="nvarchar" MaxLength="30" />
+          <Property Name="UserLastName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="T_User_Product">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__T_User__UserRole__398D8EEE">
+          <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+          <End Role="T_User" Type="Self.T_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="T_User">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Pro">
+          <End Role="T_Cart" Type="Self.T_Cart" Multiplicity="1" />
+          <End Role="T_Cart_ProductCart" Type="Self.T_Cart_ProductCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Cart">
+              <PropertyRef Name="CartId" />
+            </Principal>
+            <Dependent Role="T_Cart_ProductCart">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Property">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="1" />
+          <End Role="T_Product_Property" Type="Self.T_Product_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Product_Property">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Spec">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="1" />
+          <End Role="T_Product_Specification" Type="Self.T_Product_Specification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Product_Specification">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_User">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="1" />
+          <End Role="T_User_Product" Type="Self.T_User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_User_Product">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCart">
+          <End Role="T_ProductCart" Type="Self.T_ProductCart" Multiplicity="1" />
+          <End Role="T_Cart_ProductCart" Type="Self.T_Cart_ProductCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ProductCart">
+              <PropertyRef Name="ProductCartId" />
+            </Principal>
+            <Dependent Role="T_Cart_ProductCart">
+              <PropertyRef Name="ProductCartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property">
+          <End Role="T_Property" Type="Self.T_Property" Multiplicity="1" />
+          <End Role="T_Product_Property" Type="Self.T_Product_Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Property">
+              <PropertyRef Name="PropertyId" />
+            </Principal>
+            <Dependent Role="T_Product_Property">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specification">
+          <End Role="T_Specification" Type="Self.T_Specification" Multiplicity="1" />
+          <End Role="T_Product_Specification" Type="Self.T_Product_Specification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Specification">
+              <PropertyRef Name="SpecificationId" />
+            </Principal>
+            <Dependent Role="T_Product_Specification">
+              <PropertyRef Name="SpecificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Cart_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="1" />
+          <End Role="T_Cart" Type="Self.T_Cart" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Cart">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Description_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Description" Type="Self.T_Description" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Description">
+              <PropertyRef Name="DescriptionProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Discount_T_Group">
+          <End Role="T_Group" Type="Self.T_Group" Multiplicity="0..1" />
+          <End Role="T_Discount" Type="Self.T_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Discount">
+              <PropertyRef Name="DiscountGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Discount_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Discount" Type="Self.T_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Discount">
+              <PropertyRef Name="DiscountProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Group_T_Group">
+          <End Role="T_Group" Type="Self.T_Group" Multiplicity="0..1" />
+          <End Role="T_Group1" Type="Self.T_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Group1">
+              <PropertyRef Name="GroupParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Picture_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Picture" Type="Self.T_Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Picture">
+              <PropertyRef Name="PictureProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_T_Product">
+          <End Role="T_Group" Type="Self.T_Group" Multiplicity="1" />
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="ProductGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_ProductCart_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_ProductCart" Type="Self.T_ProductCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_ProductCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Question_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Question" Type="Self.T_Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Question">
+              <PropertyRef Name="QuestionProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Question_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
+          <End Role="T_Question" Type="Self.T_Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Question">
+              <PropertyRef Name="QuestionUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Score_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Comment" Type="Self.T_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Comment">
+              <PropertyRef Name="CommentProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Score_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
+          <End Role="T_Comment" Type="Self.T_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Comment">
+              <PropertyRef Name="CommentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_product">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="1" />
+          <End Role="T_User_Product" Type="Self.T_User_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_User_Product">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Db_BaziMarket_ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Cart" EntityType="Self.T_Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Cart_ProductCart" EntityType="Self.T_Cart_ProductCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Comment" EntityType="Self.T_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Description" EntityType="Self.T_Description" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Discount" EntityType="Self.T_Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Group" EntityType="Self.T_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Picture" EntityType="Self.T_Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Product" EntityType="Self.T_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Product_Property" EntityType="Self.T_Product_Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Product_Specification" EntityType="Self.T_Product_Specification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ProductCart" EntityType="Self.T_ProductCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Property" EntityType="Self.T_Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Question" EntityType="Self.T_Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Role" EntityType="Self.T_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Specification" EntityType="Self.T_Specification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_User_Product" EntityType="Self.T_User_Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__T_User__UserRole__398D8EEE" Association="Self.FK__T_User__UserRole__398D8EEE">
+            <End Role="T_Role" EntitySet="T_Role" />
+            <End Role="T_User" EntitySet="T_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Pro" Association="Self.FK_Cart_Pro">
+            <End Role="T_Cart" EntitySet="T_Cart" />
+            <End Role="T_Cart_ProductCart" EntitySet="T_Cart_ProductCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Property" Association="Self.FK_Product_Property">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Product_Property" EntitySet="T_Product_Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Spec" Association="Self.FK_Product_Spec">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Product_Specification" EntitySet="T_Product_Specification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_User_Product" EntitySet="T_User_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCart" Association="Self.FK_ProductCart">
+            <End Role="T_ProductCart" EntitySet="T_ProductCart" />
+            <End Role="T_Cart_ProductCart" EntitySet="T_Cart_ProductCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property" Association="Self.FK_Property">
+            <End Role="T_Property" EntitySet="T_Property" />
+            <End Role="T_Product_Property" EntitySet="T_Product_Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specification" Association="Self.FK_Specification">
+            <End Role="T_Specification" EntitySet="T_Specification" />
+            <End Role="T_Product_Specification" EntitySet="T_Product_Specification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Cart_T_User" Association="Self.FK_T_Cart_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Cart" EntitySet="T_Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Description_T_Product" Association="Self.FK_T_Description_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Description" EntitySet="T_Description" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Discount_T_Group" Association="Self.FK_T_Discount_T_Group">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Discount" EntitySet="T_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Discount_T_Product" Association="Self.FK_T_Discount_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Discount" EntitySet="T_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Group_T_Group" Association="Self.FK_T_Group_T_Group">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Group1" EntitySet="T_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Picture_T_Product" Association="Self.FK_T_Picture_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Picture" EntitySet="T_Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_T_Product" Association="Self.FK_T_Product_T_Product">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_ProductCart_T_Product" Association="Self.FK_T_ProductCart_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_ProductCart" EntitySet="T_ProductCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Question_T_Product" Association="Self.FK_T_Question_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Question" EntitySet="T_Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Question_T_User" Association="Self.FK_T_Question_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Question" EntitySet="T_Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Score_T_Product" Association="Self.FK_T_Score_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Comment" EntitySet="T_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Score_T_User" Association="Self.FK_T_Score_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Comment" EntitySet="T_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_product" Association="Self.FK_User_product">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_User_Product" EntitySet="T_User_Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Db_BaziMarket_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" />
+          <Property Name="CartCost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_User" Relationship="Self.FK_T_Cart_T_User" FromRole="T_Cart" ToRole="T_User" />
+          <NavigationProperty Name="T_ProductCart" Relationship="Self.T_Cart_ProductCart" FromRole="T_Cart" ToRole="T_ProductCart" />
+        </EntityType>
+        <EntityType Name="T_Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentRate" Type="Int32" Nullable="false" />
+          <Property Name="CommentUserId" Type="Int32" />
+          <Property Name="CommentProductId" Type="Int32" />
+          <Property Name="CommentText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentRegisterId" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_Score_T_Product" FromRole="T_Comment" ToRole="T_Product" />
+          <NavigationProperty Name="T_User" Relationship="Self.FK_T_Score_T_User" FromRole="T_Comment" ToRole="T_User" />
+        </EntityType>
+        <EntityType Name="T_Description">
+          <Key>
+            <PropertyRef Name="DescriptionId" />
+          </Key>
+          <Property Name="DescriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DecriptionTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DecriptionContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionProductId" Type="Int32" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_Description_T_Product" FromRole="T_Description" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="T_Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupParentId" Type="Int32" />
+          <NavigationProperty Name="T_Group1" Relationship="Self.FK_T_Group_T_Group" FromRole="T_Group" ToRole="T_Group1" />
+          <NavigationProperty Name="T_Group2" Relationship="Self.FK_T_Group_T_Group" FromRole="T_Group1" ToRole="T_Group" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_Product_T_Product" FromRole="T_Group" ToRole="T_Product" />
+          <NavigationProperty Name="T_Discount" Relationship="Db_BaziMarket_Model.FK_T_Discount_T_Group" FromRole="T_Group" ToRole="T_Discount" />
+        </EntityType>
+        <EntityType Name="T_Picture">
+          <Key>
+            <PropertyRef Name="PictureId" />
+          </Key>
+          <Property Name="PictureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PictureProductId" Type="Int32" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_Picture_T_Product" FromRole="T_Picture" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="T_Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductGroupId" Type="Int32" Nullable="false" />
+          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
+          <Property Name="ProductInStockCount" Type="Int32" Nullable="false" />
+          <Property Name="ProductDiscount" Type="Double" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductSold" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_Comment" Relationship="Self.FK_T_Score_T_Product" FromRole="T_Product" ToRole="T_Comment" />
+          <NavigationProperty Name="T_Description" Relationship="Self.FK_T_Description_T_Product" FromRole="T_Product" ToRole="T_Description" />
+          <NavigationProperty Name="T_Group" Relationship="Self.FK_T_Product_T_Product" FromRole="T_Product" ToRole="T_Group" />
+          <NavigationProperty Name="T_Picture" Relationship="Self.FK_T_Picture_T_Product" FromRole="T_Product" ToRole="T_Picture" />
+          <NavigationProperty Name="T_ProductCart" Relationship="Self.FK_T_ProductCart_T_Product" FromRole="T_Product" ToRole="T_ProductCart" />
+          <NavigationProperty Name="T_Question" Relationship="Self.FK_T_Question_T_Product" FromRole="T_Product" ToRole="T_Question" />
+          <NavigationProperty Name="T_Property" Relationship="Self.T_Product_Property" FromRole="T_Product" ToRole="T_Property" />
+          <NavigationProperty Name="T_Specification" Relationship="Self.T_Product_Specification" FromRole="T_Product" ToRole="T_Specification" />
+          <NavigationProperty Name="T_Discount" Relationship="Db_BaziMarket_Model.FK_T_Discount_T_Product" FromRole="T_Product" ToRole="T_Discount" />
+          <NavigationProperty Name="T_User" Relationship="Db_BaziMarket_Model.T_User_Product" FromRole="T_Product" ToRole="T_User" />
+          <Property Name="ProductRegisterDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="T_ProductCart">
+          <Key>
+            <PropertyRef Name="ProductCartId" />
+          </Key>
+          <Property Name="ProductCartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCartCount" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_ProductCart_T_Product" FromRole="T_ProductCart" ToRole="T_Product" />
+          <NavigationProperty Name="T_Cart" Relationship="Self.T_Cart_ProductCart" FromRole="T_ProductCart" ToRole="T_Cart" />
+        </EntityType>
+        <EntityType Name="T_Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="T_Product" Relationship="Self.T_Product_Property" FromRole="T_Property" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="T_Question">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuestionRegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AnswerText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerUserId" Type="Int32" />
+          <Property Name="AnswerRegisterDate" Type="DateTime" Precision="3" />
+          <Property Name="QuestionProductId" Type="Int32" />
+          <NavigationProperty Name="T_Product" Relationship="Self.FK_T_Question_T_Product" FromRole="T_Question" ToRole="T_Product" />
+          <Property Name="QuestionUserId" Type="Int32" />
+          <NavigationProperty Name="T_User1" Relationship="Db_BaziMarket_Model.FK_T_Question_T_User1" FromRole="T_Question" ToRole="T_User" />
+        </EntityType>
+        <EntityType Name="T_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="T_User" Relationship="Self.FK__T_User__UserRole__398D8EEE" FromRole="T_Role" ToRole="T_User" />
+        </EntityType>
+        <EntityType Name="T_Specification">
+          <Key>
+            <PropertyRef Name="SpecificationId" />
+          </Key>
+          <Property Name="SpecificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecificationTitle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SpecificationText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="T_Product" Relationship="Self.T_Product_Specification" FromRole="T_Specification" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserRegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserIsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ProfileImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UserRoleId" Type="Byte" Nullable="false" />
+          <Property Name="UserFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UserLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="T_Cart" Relationship="Self.FK_T_Cart_T_User" FromRole="T_User" ToRole="T_Cart" />
+          <NavigationProperty Name="T_Comment" Relationship="Self.FK_T_Score_T_User" FromRole="T_User" ToRole="T_Comment" />
+          <NavigationProperty Name="T_Role" Relationship="Self.FK__T_User__UserRole__398D8EEE" FromRole="T_User" ToRole="T_Role" />
+          <NavigationProperty Name="T_Question1" Relationship="Db_BaziMarket_Model.FK_T_Question_T_User1" FromRole="T_User" ToRole="T_Question" />
+          <NavigationProperty Name="T_Product" Relationship="Db_BaziMarket_Model.T_User_Product" FromRole="T_User" ToRole="T_Product" />
+        </EntityType>
+        <EntityType Name="T_Discount">
+          <Key>
+            <PropertyRef Name="DiscountId" />
+          </Key>
+          <Property Name="DiscountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DiscountMaximum" Type="Int32" />
+          <Property Name="DiscountGroupId" Type="Int32" />
+          <Property Name="DiscountProductId" Type="Int32" />
+          <NavigationProperty Name="T_Group" Relationship="Db_BaziMarket_Model.FK_T_Discount_T_Group" FromRole="T_Discount" ToRole="T_Group" />
+          <NavigationProperty Name="T_Product" Relationship="Db_BaziMarket_Model.FK_T_Discount_T_Product" FromRole="T_Discount" ToRole="T_Product" />
+          <Property Name="DiscountPercent" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_T_Cart_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="1" />
+          <End Role="T_Cart" Type="Self.T_Cart" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Cart">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Score_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Comment" Type="Self.T_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Comment">
+              <PropertyRef Name="CommentProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Score_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
+          <End Role="T_Comment" Type="Self.T_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Comment">
+              <PropertyRef Name="CommentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Description_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Description" Type="Self.T_Description" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Description">
+              <PropertyRef Name="DescriptionProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Group_T_Group">
+          <End Role="T_Group" Type="Self.T_Group" Multiplicity="0..1" />
+          <End Role="T_Group1" Type="Self.T_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Group1">
+              <PropertyRef Name="GroupParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Product_T_Product">
+          <End Role="T_Group" Type="Self.T_Group" Multiplicity="1" />
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Product">
+              <PropertyRef Name="ProductGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Picture_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Picture" Type="Self.T_Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Picture">
+              <PropertyRef Name="PictureProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_ProductCart_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_ProductCart" Type="Self.T_ProductCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_ProductCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Question_T_Product">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="0..1" />
+          <End Role="T_Question" Type="Self.T_Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Question">
+              <PropertyRef Name="QuestionProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Question_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="1" />
+          <End Role="T_Question" Type="Self.T_Question" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Question">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__T_User__UserRole__398D8EEE">
+          <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+          <End Role="T_User" Type="Self.T_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="T_User">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_Cart_ProductCart">
+          <End Role="T_Cart" Type="Self.T_Cart" Multiplicity="*" />
+          <End Role="T_ProductCart" Type="Self.T_ProductCart" Multiplicity="*" />
+        </Association>
+        <Association Name="T_Product_Property">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <End Role="T_Property" Type="Self.T_Property" Multiplicity="*" />
+        </Association>
+        <Association Name="T_Product_Specification">
+          <End Role="T_Product" Type="Self.T_Product" Multiplicity="*" />
+          <End Role="T_Specification" Type="Self.T_Specification" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Db_BaziMarket_Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="T_Cart" EntityType="Self.T_Cart" />
+          <EntitySet Name="T_Comment" EntityType="Self.T_Comment" />
+          <EntitySet Name="T_Description" EntityType="Self.T_Description" />
+          <EntitySet Name="T_Group" EntityType="Self.T_Group" />
+          <EntitySet Name="T_Picture" EntityType="Self.T_Picture" />
+          <EntitySet Name="T_Product" EntityType="Self.T_Product" />
+          <EntitySet Name="T_ProductCart" EntityType="Self.T_ProductCart" />
+          <EntitySet Name="T_Property" EntityType="Self.T_Property" />
+          <EntitySet Name="T_Question" EntityType="Self.T_Question" />
+          <EntitySet Name="T_Role" EntityType="Self.T_Role" />
+          <EntitySet Name="T_Specification" EntityType="Self.T_Specification" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" />
+          <EntitySet Name="T_Discount" EntityType="Self.T_Discount" />
+          <AssociationSet Name="FK_T_Cart_T_User" Association="Self.FK_T_Cart_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Cart" EntitySet="T_Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Score_T_Product" Association="Self.FK_T_Score_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Comment" EntitySet="T_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Score_T_User" Association="Self.FK_T_Score_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Comment" EntitySet="T_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Description_T_Product" Association="Self.FK_T_Description_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Description" EntitySet="T_Description" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Group_T_Group" Association="Self.FK_T_Group_T_Group">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Group1" EntitySet="T_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Product_T_Product" Association="Self.FK_T_Product_T_Product">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Product" EntitySet="T_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Picture_T_Product" Association="Self.FK_T_Picture_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Picture" EntitySet="T_Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_ProductCart_T_Product" Association="Self.FK_T_ProductCart_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_ProductCart" EntitySet="T_ProductCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Question_T_Product" Association="Self.FK_T_Question_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Question" EntitySet="T_Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Question_T_User" Association="Self.FK_T_Question_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Question" EntitySet="T_Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK__T_User__UserRole__398D8EEE" Association="Self.FK__T_User__UserRole__398D8EEE">
+            <End Role="T_Role" EntitySet="T_Role" />
+            <End Role="T_User" EntitySet="T_User" />
+          </AssociationSet>
+          <AssociationSet Name="T_Cart_ProductCart" Association="Self.T_Cart_ProductCart">
+            <End Role="T_Cart" EntitySet="T_Cart" />
+            <End Role="T_ProductCart" EntitySet="T_ProductCart" />
+          </AssociationSet>
+          <AssociationSet Name="T_Product_Property" Association="Self.T_Product_Property">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Property" EntitySet="T_Property" />
+          </AssociationSet>
+          <AssociationSet Name="T_Product_Specification" Association="Self.T_Product_Specification">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Specification" EntitySet="T_Specification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Discount_T_Group" Association="Db_BaziMarket_Model.FK_T_Discount_T_Group">
+            <End Role="T_Group" EntitySet="T_Group" />
+            <End Role="T_Discount" EntitySet="T_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Discount_T_Product" Association="Db_BaziMarket_Model.FK_T_Discount_T_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_Discount" EntitySet="T_Discount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Question_T_User1" Association="Db_BaziMarket_Model.FK_T_Question_T_User1">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Question" EntitySet="T_Question" />
+          </AssociationSet>
+          <AssociationSet Name="T_User_Product" Association="Db_BaziMarket_Model.T_User_Product">
+            <End Role="T_Product" EntitySet="T_Product" />
+            <End Role="T_User" EntitySet="T_User" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_T_Discount_T_Group">
+          <End Type="Db_BaziMarket_Model.T_Group" Role="T_Group" Multiplicity="0..1" />
+          <End Type="Db_BaziMarket_Model.T_Discount" Role="T_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="T_Discount">
+              <PropertyRef Name="DiscountGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Discount_T_Product">
+          <End Type="Db_BaziMarket_Model.T_Product" Role="T_Product" Multiplicity="0..1" />
+          <End Type="Db_BaziMarket_Model.T_Discount" Role="T_Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="T_Discount">
+              <PropertyRef Name="DiscountProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Question_T_User1">
+          <End Type="Db_BaziMarket_Model.T_User" Role="T_User" Multiplicity="0..1" />
+          <End Type="Db_BaziMarket_Model.T_Question" Role="T_Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Question">
+              <PropertyRef Name="QuestionUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_User_Product">
+          <End Type="Db_BaziMarket_Model.T_Product" Role="T_Product" Multiplicity="*" />
+          <End Type="Db_BaziMarket_Model.T_User" Role="T_User" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Db_BaziMarket_ModelStoreContainer" CdmEntityContainer="Db_BaziMarket_Entities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Cart">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Cart">
+              <MappingFragment StoreEntitySet="T_Cart">
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="CartCost" ColumnName="CartCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Comment">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Comment">
+              <MappingFragment StoreEntitySet="T_Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="CommentRate" ColumnName="CommentRate" />
+                <ScalarProperty Name="CommentUserId" ColumnName="CommentUserId" />
+                <ScalarProperty Name="CommentProductId" ColumnName="CommentProductId" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentRegisterId" ColumnName="CommentRegisterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Description">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Description">
+              <MappingFragment StoreEntitySet="T_Description">
+                <ScalarProperty Name="DescriptionId" ColumnName="DescriptionId" />
+                <ScalarProperty Name="DecriptionTitle" ColumnName="DecriptionTitle" />
+                <ScalarProperty Name="DecriptionContent" ColumnName="DecriptionContent" />
+                <ScalarProperty Name="DescriptionImageName" ColumnName="DescriptionImageName" />
+                <ScalarProperty Name="DescriptionProductId" ColumnName="DescriptionProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Group">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Group">
+              <MappingFragment StoreEntitySet="T_Group">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupParentId" ColumnName="GroupParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Picture">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Picture">
+              <MappingFragment StoreEntitySet="T_Picture">
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="PictureProductId" ColumnName="PictureProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Product">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Product">
+              <MappingFragment StoreEntitySet="T_Product">
+                <ScalarProperty Name="ProductRegisterDate" ColumnName="ProductRegisterDate" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductGroupId" ColumnName="ProductGroupId" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductInStockCount" ColumnName="ProductInStockCount" />
+                <ScalarProperty Name="ProductDiscount" ColumnName="ProductDiscount" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductSold" ColumnName="ProductSold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ProductCart">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_ProductCart">
+              <MappingFragment StoreEntitySet="T_ProductCart">
+                <ScalarProperty Name="ProductCartId" ColumnName="ProductCartId" />
+                <ScalarProperty Name="ProductCartCount" ColumnName="ProductCartCount" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Property">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Property">
+              <MappingFragment StoreEntitySet="T_Property">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="PropertyContent" ColumnName="PropertyContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Question">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Question">
+              <MappingFragment StoreEntitySet="T_Question">
+                <ScalarProperty Name="QuestionUserId" ColumnName="QuestionUserId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionRegisterDate" ColumnName="QuestionRegisterDate" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="AnswerUserId" ColumnName="AnswerUserId" />
+                <ScalarProperty Name="AnswerRegisterDate" ColumnName="AnswerRegisterDate" />
+                <ScalarProperty Name="QuestionProductId" ColumnName="QuestionProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Role">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Role">
+              <MappingFragment StoreEntitySet="T_Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Specification">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Specification">
+              <MappingFragment StoreEntitySet="T_Specification">
+                <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+                <ScalarProperty Name="SpecificationTitle" ColumnName="SpecificationTitle" />
+                <ScalarProperty Name="SpecificationText" ColumnName="SpecificationText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_User">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_User">
+              <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserRegisterDate" ColumnName="UserRegisterDate" />
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Discount">
+            <EntityTypeMapping TypeName="Db_BaziMarket_Model.T_Discount">
+              <MappingFragment StoreEntitySet="T_Discount">
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="DiscountProductId" ColumnName="DiscountProductId" />
+                <ScalarProperty Name="DiscountGroupId" ColumnName="DiscountGroupId" />
+                <ScalarProperty Name="DiscountMaximum" ColumnName="DiscountMaximum" />
+                <ScalarProperty Name="DiscountCode" ColumnName="DiscountCode" />
+                <ScalarProperty Name="DiscountId" ColumnName="DiscountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="T_Cart_ProductCart" TypeName="Db_BaziMarket_Model.T_Cart_ProductCart" StoreEntitySet="T_Cart_ProductCart">
+            <EndProperty Name="T_Cart">
+              <ScalarProperty Name="CartId" ColumnName="CartId" />
+            </EndProperty>
+            <EndProperty Name="T_ProductCart">
+              <ScalarProperty Name="ProductCartId" ColumnName="ProductCartId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="T_Product_Property" TypeName="Db_BaziMarket_Model.T_Product_Property" StoreEntitySet="T_Product_Property">
+            <EndProperty Name="T_Product">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+            <EndProperty Name="T_Property">
+              <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="T_Product_Specification" TypeName="Db_BaziMarket_Model.T_Product_Specification" StoreEntitySet="T_Product_Specification">
+            <EndProperty Name="T_Product">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+            <EndProperty Name="T_Specification">
+              <ScalarProperty Name="SpecificationId" ColumnName="SpecificationId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="T_User_Product" TypeName="Db_BaziMarket_Model.T_User_Product" StoreEntitySet="T_User_Product">
+            <EndProperty Name="T_User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="T_Product">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

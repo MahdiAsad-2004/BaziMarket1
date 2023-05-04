@@ -1,0 +1,100 @@
+﻿@model BaziMarket1.Models.T_Cart
+
+<main class="main-cart">
+    @if (Model == null)
+    {
+        <h3 style="height: 300px; display: flex; flex-direction:column; align-items: center; justify-content:center;"> <i class="bi bi-basket2" style="font-size:70px; margin-bottom:30px;"></i>  سبد خرید شما خالی است !</h3>
+    }
+    else if (Model.T_ProductCart.Count < 1 || Model.T_ProductCart == null || !Model.T_ProductCart.Any() || ViewBag.CartNull != null)
+    {
+        <h3 style="height: 300px; display: flex; flex-direction:column; align-items: center; justify-content:center;"> <i class="bi bi-basket2"></i>  سبد خرید شما خالی است !</h3>
+    }    
+    else
+    {
+        <div class="cart-details">
+            <h3><b>سبد خرید </b><span>@Model.T_ProductCart.Sum(t => t.ProductCartCount) مورد</span></h3>
+            <div>
+                <p>کالا</p>
+                <p>تعداد</p>
+                <p>قیمت</p>
+                <p>حذف</p>
+            </div>
+
+            @foreach (var item in Model.T_ProductCart)
+            {
+                BaziMarket1.Models.T_Product product = item.T_Product;
+                int price = product.ProductPrice;
+                if (product.ProductDiscount != null)
+                {
+                    price = product.ProductPrice - (int)(product.ProductPrice * product.ProductDiscount.Value / 100);
+                }
+                <div class="cart-details-item">
+                    <div class="cart-details-item-image">
+                        <img src="~/images/products/@product.ProductImage" alt="@product.ProductName">
+                        <a href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@product.ProductId">@product.ProductName</a>
+                    </div>
+                    <p class="cart-details-item-count">@item.ProductCartCount</p>
+                    <div class="cart-details-item-price">
+                        <p> @price.DevideMoneyNumber() <span class="material-symbols-outlined">close</span> @item.ProductCartCount </p>
+                        @{
+                            int totalPrice = price * item.ProductCartCount.Value;
+                        }
+                        <p><b>@totalPrice.DevideMoneyNumber()</b></p>
+                    </div>
+                    <form action="RemoveFromCart" method="post">
+                        <input name="ProductCartId" type="hidden" value="@item.ProductCartId" />
+                        <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                        <button type="submit" style="background-color:inherit; border:none;"><span class="material-symbols-outlined" style="color: red; font-size: 28px;">delete</span></button>
+                    </form>
+                </div>
+                Model.CartCost += totalPrice;
+            }
+        </div>
+
+
+        <div class="cart-shopping">
+            <form class="cart-shopping-discount" action="ApplyDiscountCode" method="post" style="flex-wrap:wrap;">
+                <input name="DiscountCode" type="text" placeholder="کد تخفیف خود را وارد کنید">
+                <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                <button type="submit">اعمال کد تخفیف</button>
+                @if (ViewBag.WrongDiscountCode != null)
+                {
+                    <p style="width:96%; margin-top:6px;" class="text-danger">کد تخفیف اشتباه است !</p>
+                }
+            </form>
+            <h4 style="margin-bottom: 30px;">صورت حساب</h4>
+            <p class="cart-shopping-price">جمع قیمت : <span>@Model.CartCost.DevideMoneyNumber()  تومان</span></p>
+            @{
+                int finalPrice = Model.CartCost + 50000;
+            }
+            @if (ViewBag.DiscountPercent != null)
+            {
+                int DiscountPrice = (int)(Model.CartCost * ViewBag.DiscountPercent / 100);
+                <p class="cart-shopping-price">
+                    تخفیف : <b>@ViewBag.DiscountPercent %</b>
+                    @if (ViewBag.DiscountMax != null)
+                    {
+                        int DiscountMax = ViewBag.DiscountMax;
+                        if (ViewBag.DiscountMax < DiscountPrice)
+                        {
+                            DiscountPrice = DiscountMax;
+                        }
+                        <span>(حداکثر  @DiscountMax.DevideMoneyNumber() تومان)</span>
+                    }
+                </p>
+                finalPrice = Model.CartCost - DiscountPrice + 50000;
+            }
+            <p class="cart-shopping-price">هزینه حمل و نقل : <span>50,000 تومان</span></p>
+            <p class="cart-shopping-total">مجموع :  <span>@finalPrice.DevideMoneyNumber()  تومان</span></p>
+            <a href="" class="cart-shopping-checkout">تسویه حساب</a>
+        </div>
+    }
+
+
+</main>
+
+
+
+
+
+

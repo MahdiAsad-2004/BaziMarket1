@@ -1,0 +1,448 @@
+﻿@model BaziMarket1.Models.T_Product
+@{
+    ViewBag.Title = "Product";
+}
+
+
+
+<p class="categoryAddress">
+    <a href="https://localhost:44398/?UserId=@ViewBag.UserId" target="_blank">خانه</a>
+    /
+    <a href="https://localhost:44398//Product/Products?Category=0&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=" target="_blank">محصولات</a>
+    /
+    <a href="https://localhost:44398//Product/Products?Category=@Model.ProductGroupId&UserId=@ViewBag.UserId&Page=1&SortBy=&AvailableGoods=&StartPrice=&EndPrice=" target="_blank">@Model.T_Group.GroupName</a>
+    /
+    <a href="">@Model.ProductName</a>
+</p>
+
+
+<div class="productPage">
+    <div class="productPage-slide">
+        <div class="slideshow-container">
+            @{
+                int i = 1;
+                if (Model.T_Picture != null)
+                {
+                    foreach (var item in Model.T_Picture)
+                    {
+                        <div class="mySlides">
+                            <div class="numbertext">@Model.T_Picture.Count / @i</div>
+                            <img src="~/images/product-pictures/@item.PictureName" style="width:100%">
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="mySlides">
+                        <div class="numbertext">1</div>
+                        <img src="~/images/product-pictures/productImage.png" style="width:100%">
+                    </div>
+                }
+            }
+
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+        </div>
+        <br>
+
+        <div style="text-align:center">
+            @{
+                if (Model.T_Picture != null)
+                {
+                    for (int j = 1; j <= Model.T_Picture.Count; j++)
+                    {
+                        <span class="dot" onclick="currentSlide(@j)"></span>
+                    }
+                }
+                else
+                {
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                }
+            }
+        </div>
+
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+        </script>
+    </div>
+    <div class="productPage-text">
+        <h2>@Model.ProductName</h2>
+        <div class="productPage-text-property">
+            <h4>مشخصات کلی</h4>
+            <ul>
+                @if (Model.T_Property != null)
+                {
+                    foreach (var item in Model.T_Property)
+                    {
+                        <li>@item.PropertyContent</li>
+                    }
+                }                
+            </ul>
+            <div>
+                @if (ViewBag.UserId != null)
+                {
+                    if (Model.T_User.Any(t => t.UserId == ViewBag.UserId))
+                    {
+                        <form action="RemoveFromWishlist" method="post">
+                            <input name="ProductId" type="hidden" value="@Model.ProductId" />
+                            <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                            <label>حذف از علاقه مندی ها</label>
+                            <button class="button2" type="submit" style="background-color:white; border:none; width:auto; height:auto;"><span style="color:red;" class="material-symbols-outlined span2">heart_check</span></button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form action="AddToWishlist" method="post">
+                            <input name="ProductId" type="hidden" value="@Model.ProductId" />
+                            <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                            <label>افزودن به علاقه مندی ها</label>
+                            <button class="button1" type="submit" style="background-color:white; border:none; width:auto; height:auto;"><span class="material-symbols-outlined">heart_plus</span></button>
+                        </form>
+                    }
+                }
+                else
+                {
+                    <form action="AddToWishlist" method="post">
+                        <input name="ProductId" type="hidden" value="@Model.ProductId" />
+                        <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                        <label>افزودن به علاقه مندی ها</label>
+                        <button class="button1" type="submit" style="background-color:white; border:none; width:auto; height:auto;"><span class="material-symbols-outlined">heart_plus</span></button>
+                    </form>
+                }
+
+                <p>
+                    همرسانی : &ensp;
+                    <a href=""><i class="bi bi-telegram"></i></a>
+                    <a href=""><i class="bi bi-whatsapp"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="productPage-text-cart">            
+            <p>
+                امتیاز محصول
+            </p>
+           
+            <div class="productPage-text-cart-rate">
+                @{
+                    int x = 0;
+                    Model.T_Comment.ToList().ForEach(t => { x += t.CommentRate; });
+                    if (Model.T_Comment.Count != 0)
+                    {
+                        double y = x / Model.T_Comment.Count;
+                        for (int k = 1; k <= (int)y; k++)
+                        {
+                            <i class="bi bi-star-fill"></i>
+                        }
+                        if (y.StarRate() || (int)y < 1)
+                        {
+                            <i class="bi bi-star-half"></i>
+                            for (int k = 1; k <= 4 - (int)y; k++)
+                            {
+                                <i class="bi bi-star"></i>
+                            }
+                        }
+                        else
+                        {
+                            for (int k = 1; k <= 5 - (int)y; k++)
+                            {
+                                <i class="bi bi-star"></i>
+                            }
+                        }
+                        <span style="margin-left: 5px; color:goldenrod;"></span>
+                    }
+                    else
+                    {
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                    }
+                }
+                <span style="margin-left: 5px;">(@Model.T_Comment.Count)</span>
+            </div>
+            <ul>
+                <li> <i class="bi bi-check-circle" style="margin-left: 5px; margin-top: 6px; color: blueviolet;"></i> 10 روز ضمانت بازگشت کالا </li>
+                <li>
+                    @if (Model.ProductDiscount != null)
+                    {
+                        <p class="product-lables-discount" style="width:100%; font-family:'vazir'; justify-content:right; padding-left:15px; background-color:inherit; color:black; font-size:25px; margin-bottom:20px; margin-top:10px;">تخفیف <span style="font-family:'13'; margin-right:8px; font-size:25px;">@Model.ProductDiscount %</span></p>
+                    }
+                    <div class="product-Price" style="justify-content:space-between;">
+                        @if (Model.ProductDiscount == null)
+                        {
+                            <p style="font-size:25px;" class="product-Price-New"><b style="font-size:25px;">@Model.ProductPrice.DevideMoneyNumber()</b>&ensp;تومان</p>
+                        }
+                        else
+                        {
+                            int newPrice = (int)(Model.ProductPrice - (Model.ProductPrice * Model.ProductDiscount.Value / 100));
+                            <p style="font-size:25px;" class="product-Price-Old"><ins style="font-size:25px;">@Model.ProductPrice.DevideMoneyNumber()</ins> تومان</p>
+                            <p style="font-size:25px;" class="product-Price-New"><b style="font-size:25px;">@newPrice.DevideMoneyNumber()</b> تومان</p>
+                        }
+                    </div>
+                </li>
+
+                <li style="  font-size: 20px; text-align: right; padding-right: 8px;">
+                    موجودی :
+                    @if (Model.ProductInStockCount > 0)
+                    {
+                        <span style="color: forestgreen;">موجود</span>
+                    }
+                    else
+                    {
+                        <span style="color: red;">ناموجود</span>
+                    }
+                </li>
+                @if (Model.ProductInStockCount > 0 )
+                {
+                    <li>
+                        <form action="AddProductToCart" method="post">
+                            <input name="ProductId" type="hidden" value="@Model.ProductId" />
+                            <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+                            <label for="ProductCount"> تعداد </label>
+                            <input type="number" name="ProductCount" value="1" id="ProductCount" min="1" max="@Model.ProductInStockCount">
+                            <button type="submit"> <i class="bi bi-cart-plus" style="color:white;"></i> افزودن به سبد خرید </button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="product-tab">
+    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">توضیحات</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">مشخصات</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">نظرات</button>
+    <button class="tablinks" onclick="openCity(event, 'Tehran')">پرسش و پاسخ</button>
+</div>
+
+
+
+
+@if (Model.T_Description != null)
+{
+    <div id="London" class="product-tab-content product-tab-description">
+        @foreach (var item in Model.T_Description)
+        {
+            <h4>@item.DecriptionTitle</h4>
+            <p>@item.DecriptionContent</p>
+            <figure>
+                <img src="~/images/product-pictures/@item.DescriptionImageName" alt="">
+            </figure>
+        }
+    </div>
+}
+
+
+
+
+
+
+@if (Model.T_Specification != null)
+{
+    <div id="Paris" class="product-tab-specification  product-tab-content">
+        @foreach (var item in Model.T_Specification)
+        {
+            <div>
+                <p>@item.SpecificationTitle</p>
+                <p>@item.SpecificationText</p>
+            </div>
+        }
+    </div>
+}
+
+
+
+
+
+
+<div id="Tokyo" class="product-tab-content  product-comments">
+    @if (ViewBag.UserId != null)
+    {
+        <form class="product-relateds" action="AddComment" method="post">
+            <h5 style="width: 100%; margin: 0%; ">دیدگاه شما درباره به این کالا چیست ؟ </h5>
+            <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+            <input name="ProductId" type="hidden" value="@Model.ProductId" />
+            <label style="margin: 0%; margin-top: 6px; margin-left: 20px;" for="">امتیاز شما به این محصول </label>
+            <div class="rate" style=" margin: 0%">
+                <input type="radio" id="star5" name="rate" value="5" required/>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+            </div>
+            <div style="width: 100%; height: auto; display: flex; flex-direction: column; margin: 0%;">
+                <label for="CommentText">متن نظر شما</label>
+                <textarea required name="CommentText" id="CommentText" cols="30" rows="10" placeholder="متن مورد نظر خود را بنویسید" maxlength="120"></textarea>
+            </div>
+            <button type="submit">ثبت نظر </button>
+
+        </form>
+    }
+    else
+    {
+        <p style="width:100%; display:flex; margin-bottom:30px;">
+            برای نظر دادن باید وارد شوید
+            <a href="https://localhost:44398/User/Login" style="width: 80px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-right: 15px; background-color: orangered; color:white; text-decoration:none;">
+                ورود
+            </a>
+        </p>
+    }
+    <h5 style="width: 100%; height: auto; padding-top: 25px; margin: 0%; border-top: 4px solid black; margin-bottom: 15px;">@Model.T_Comment.Count دیدگاه برای محصول</h5>
+    @foreach (var item in Model.T_Comment)
+    {
+    <div class="product-comments-comment">
+        <p>@item.T_User.UserFirstName  @item.T_User.UserLastName  (@item.CommentRegisterId)</p>
+        <p>@item.CommentText</p>
+        <p>
+            @for (int l = 1; l <= item.CommentRate; l++)
+            {
+                <i class="bi bi-star-fill"></i>
+            }
+        </p>
+    </div>
+    }
+</div>
+
+
+
+
+
+<div id="Tehran" class="product-tab-content product-questions">
+    @if (ViewBag.UserId != null)
+    {
+        <h5>پرسش و پاسخ</h5>
+        <form action="AddQuestion" method="post">
+            <input name="UserId" type="hidden" value="@ViewBag.UserId" />
+            <input name="ProductId" type="hidden" value="@Model.ProductId" />
+            <label for="">پرسش خود را درباره این کالا بیان کنید</label>
+            <textarea name="QuestionText" id="" cols="30" rows="10" placeholder="متن پرسش مورد نطر خودرا بنویسید"></textarea>
+            <button type="submit"> ثبت پرسش</button>
+        </form>
+    }
+    else
+    {
+        <p style="width:100%; display:flex; margin-bottom:30px;">
+            برای پرسش باید وارد شوید
+            <a href="https://localhost:44398/User/Login" style="width: 80px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-right: 15px; background-color: orangered; color:white; text-decoration:none;">
+                ورود
+            </a>
+        </p>
+    }
+    <h5 style="width: 100%; height: auto; padding-top: 25px; margin: 0%; border-top: 4px solid black; margin-bottom: 15px;">@Model.T_Question.Count پرسش برای محصول</h5>
+    @foreach (var item in Model.T_Question.ToList())
+    {
+    <div class="product-questions-question">
+        <p><b>سوال</b> @item.T_User1.UserFirstName  @item.T_User1.UserLastName (@item.QuestionRegisterDate)</p>
+        <p>@item.QuestionText</p>
+        <p><strong>پاسخ</strong> پشتیبانی </p>
+        <p>@item.AnswerText</p>
+    </div>
+    }
+
+
+</div>
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("product-tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "flex";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+
+
+
+
+<div class="product-relateds">
+
+    <h4 style="width: 100%; height: auto; margin: 0%; display: flex; justify-content: center; margin-bottom: 30px;">محصولات مرتبط</h4>
+    @{
+        var list = Model.T_Group.T_Product.ToList().OrderBy(t => t.ProductInStockCount).Reverse().Take(5);
+        foreach (var item in list)
+        {
+            <div class="products-product">
+                <div class="product-lables">
+                    @if (item.ProductInStockCount < 1)
+                    {
+                        <p class="product-lables-available">ناموجود</p>
+                    }
+                    @if (item.ProductDiscount != null)
+                    {
+                        <p class="product-lables-discount">@item.ProductDiscount %</p>
+                    }
+                </div>
+                <a href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId" class="product-Image">
+                    <img src="~/images/products/@item.ProductImage" alt="">
+                </a>
+                <div class="product-Title">
+                    <a class="products-product-a" href="https://localhost:44398/Product/product?UserId=@ViewBag.UserId&productId=@item.ProductId">@item.ProductName</a>
+                </div>
+                <div class="product-Price">
+                    @if (item.ProductDiscount == null)
+                    {
+                        <p class="product-Price-New"><b>@item.ProductPrice.DevideMoneyNumber()</b>&ensp;تومان</p>
+                    }
+                    else
+                    {
+                        int newPrice = (int)(item.ProductPrice - (item.ProductPrice * item.ProductDiscount.Value / 100));
+                        <p class="product-Price-Old"><ins>@item.ProductPrice.DevideMoneyNumber()</ins> تومان</p>
+                        <p class="product-Price-New"><b>@newPrice.DevideMoneyNumber()</b> تومان</p>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
+
